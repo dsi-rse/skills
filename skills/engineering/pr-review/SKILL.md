@@ -234,6 +234,8 @@ After both files are final, write `pr-review-plain.md`: a translation of the out
 
 This file is for stakeholders who won't read the technical review — write it so they don't have to.
 
+Finish with a markdown cleanup so the file pastes cleanly into a GitHub comment: no manually wrapped lines (each paragraph and bullet is a single line — GitHub renders hard breaks literally), blank lines between blocks, standard `-` bullets and `##` headings, and backticks around file paths and code identifiers. Verify with `grep`-level scrutiny: no line ends mid-sentence.
+
 Finish by presenting all three files and offering to (a) drill into any finding, (b) draft fixes for High/Important items, or (c) post the notes as GitHub review comments (`gh pr review` / `gh api`).
 
 ## Phase 8 — Re-review (delta mode)
