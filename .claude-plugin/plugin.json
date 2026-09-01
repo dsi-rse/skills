@@ -7,7 +7,7 @@
     "url": "https://github.com/dsi-rse"
   },
   "repository": "https://github.com/dsi-rse/skills",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "keywords": ["skills", "code-review", "pr-review", "engineering"],
   "skills": [
     "./skills/engineering/pr-review"
