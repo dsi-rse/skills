@@ -1,30 +1,36 @@
 # DSI RSE Skills
 
-Shared [Claude Code skills](https://docs.claude.com/en/docs/claude-code/skills) for the UChicago DSI Research Software Engineering team.
+Shared [agent skills](https://www.skills.sh/) for the UChicago DSI Research Software Engineering team. Works with Claude Code, Cursor, Codex, and 70+ other agents.
 
-## Using a skill
+## Install
 
-Copy (or symlink) a skill's directory into your skills folder:
+**Via the skills CLI** (any agent):
 
 ```bash
-# available in every project
-cp -r pr-review ~/.claude/skills/
-
-# or per-project
-cp -r pr-review your-project/.claude/skills/
+npx skills add dsi-rse/skills                                  # interactive picker
+npx skills add dsi-rse/skills --skill pr-review -a claude-code # one skill, one agent
+npx skills add dsi-rse/skills --list                           # see what's available
+npx skills update                                              # refresh later
 ```
 
-Claude Code picks it up automatically — invoke by name (e.g. `/pr-review`) or just describe the task and the skill's `description` triggers it.
+**As a Claude Code plugin** (managed, auto-updating):
+
+```bash
+claude plugin marketplace add dsi-rse/skills
+claude plugin install dsi-rse-skills@dsi-rse
+```
+
+**Manually**: copy a skill's directory into `~/.claude/skills/` (global) or `your-project/.claude/skills/` (per-project).
 
 ## Available skills
 
-| Skill | What it does |
-|---|---|
-| [`pr-review`](pr-review/) | Structured multi-agent PR review with HIPPO severity tags (High, Important, Personal preference, Opinion). Gates, diff mapping, verification by running, fan-out reviewers, false-positive filtering. |
+| Skill | Invocation | What it does |
+|---|---|---|
+| [`pr-review`](skills/engineering/pr-review/) | user- or model-invoked | Structured multi-agent PR review with HIPPO severity tags (High, Important, Personal preference, Opinion). Gates, diff mapping, verification by running, fan-out reviewers, false-positive filtering. |
 
 ## Contributing a skill
 
-A skill is a directory containing a `SKILL.md` with frontmatter:
+A skill is a directory under `skills/<category>/` containing a `SKILL.md` with frontmatter:
 
 ```markdown
 ---
@@ -34,7 +40,7 @@ description: One paragraph saying what it does AND when to trigger it — includ
 
 # My Skill
 
-Instructions Claude follows when the skill is invoked...
+Instructions the agent follows when the skill is invoked...
 ```
 
-Optionally add `references/` (docs loaded on demand) and `scripts/` (helper scripts). Use `pr-review/` as the model. Open a PR to add yours.
+Optionally add `references/` (docs loaded on demand) and `scripts/` (helper scripts). Use `skills/engineering/pr-review/` as the model. Open a PR to add yours.

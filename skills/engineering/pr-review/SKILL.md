@@ -5,7 +5,7 @@ description: Structured, multi-agent PR review workflow producing markdown findi
 
 # PR Review
 
-A structured PR review workflow: gate, gather context, map the diff, verify by running, fan out focused reviewers, filter false positives, and produce two markdown deliverables — a findings file and a summary with line-anchored notes tagged by HIPPO severity, ending in an explicit verdict.
+A structured PR review workflow: gate, gather context, map the diff, verify by running, fan out focused reviewers, filter false positives, and produce three markdown deliverables — a findings file, a summary with line-anchored notes tagged by HIPPO severity ending in an explicit verdict, and a plain-language translation of both.
 
 The goal is a review a strong human reviewer would give: grounded in the PR's actual requirements and the repo's own conventions, verified by execution where possible, honest about severity, and high signal — every comment either actionable or explicitly marked as non-blocking.
 
@@ -105,7 +105,7 @@ Match structure to complexity, judged from the change map:
 | Medium | ~150–800 lines or 2–3 areas | One reviewer per critical factor, each reading the whole diff |
 | Large | > ~800 lines, many areas | Area × factor split, plus one **cross-cutting** reviewer for coherence between areas |
 
-Heuristics, not rules — a 100-line migration can outweigh a 900-line generated diff. Say which tier you picked and why. Cap fan-out at ~6 concurrent reviewers.
+Heuristics, not rules — a 100-line migration can outweigh a 900-line generated diff. Say which tier you picked and why. Cap fan-out at ~10 concurrent reviewers.
 
 ### Reviewer briefs
 
@@ -130,7 +130,8 @@ Rules:
   the caller contract, the test that covers it. Report only findings that
   survive. If you can't fully verify, report it with your confidence stated.
 
-For each finding: file, line number(s) in the NEW version, what's wrong, why it
+For each finding: a title under 100 characters, a domain tag (your factor,
+e.g. [security]), file, line number(s) in the NEW version, what's wrong, why it
 matters for <factor>, a suggested fix if cheap to state, and a proposed HIPPO
 severity with one-line justification.
 Also report what you checked and found CLEAN — absence of findings must mean
@@ -158,7 +159,7 @@ Reviewed <date> against <base branch> at <base sha>, head at <head sha>
 
 ## Factor: <factor> (reviewer scope: <full diff / area>)
 ### Findings
-- **<file>:<line>** [proposed: <HIPPO>] [confidence: <verified/likely/uncertain>] <description, why, suggested fix>
+- **[<domain>] <title, <100 chars>** — <file>:<line> [proposed: <HIPPO>] [confidence: <verified/likely/uncertain>] <description, why, suggested fix>
 ### Verified clean
 - <what was checked and found fine>
 ### Highlights
@@ -196,11 +197,13 @@ reasoning behind the verdict.>
 
 ## Inline notes
 ### <file path>
-- **L<line>** `HIGH` — <note>
-- **L<line>–<line>** `IMPORTANT` — <note>
-- **L<line>** `PREF` — <note>
-- **L<line>** `OPINION` — <note>
+- **L<line>** `HIGH` `[security]` **<title>** — <note>
+- **L<line>–<line>** `IMPORTANT` `[correctness]` **<title>** — <note>
+- **L<line>** `PREF` `[repo-coherence]` **<title>** — <note>
+- **L<line>** `OPINION` `[tests]` **<title>** — <note>
 ```
+
+Every note carries a domain tag (the reviewing factor, e.g. `[security]`, `[performance]`) and a title under 100 characters that states the problem on its own — a reader skimming only titles should still get the gist.
 
 Verdict mapping: any High → REQUEST CHANGES; only Important → APPROVE WITH COMMENTS (or REQUEST CHANGES if they cluster on one risk); only preferences/opinions → APPROVE.
 
@@ -221,7 +224,17 @@ Apply consistently — severity inflation is the fastest way to make a review ig
 
 When torn between tiers, pick the lower and state the doubt — an honest "Important, arguably High" beats a defensive "High".
 
-Finish by presenting both files and offering to (a) drill into any finding, (b) draft fixes for High/Important items, or (c) post the notes as GitHub review comments (`gh pr review` / `gh api`).
+### Plain-language pass (always last)
+
+After both files are final, write `pr-review-plain.md`: a translation of the output documents at a high school reading level. No jargon, no acronyms without spelling them out (HIPPO, N+1, CSRF, etc.), no assumed programming knowledge beyond what a technically curious non-engineer has.
+
+- One short paragraph: what the change does and the verdict, in plain words ("this is safe to merge once two problems are fixed").
+- One bullet per High/Important finding: what's wrong, why it matters in real-world terms ("an attacker could read other users' data"), and what the fix is.
+- One sentence each on what was checked and came back clean, and anything notably well done.
+
+This file is for stakeholders who won't read the technical review — write it so they don't have to.
+
+Finish by presenting all three files and offering to (a) drill into any finding, (b) draft fixes for High/Important items, or (c) post the notes as GitHub review comments (`gh pr review` / `gh api`).
 
 ## Phase 8 — Re-review (delta mode)
 
@@ -232,6 +245,7 @@ When the author has pushed fixes after a prior review:
 3. For each prior High/Important finding, classify: **resolved** (verify the fix, don't take the commit message's word), **acknowledged-won't-fix** (author responded; record it), or **unaddressed**.
 4. Review the *new* changes themselves at proportional depth — fixes introduce bugs too, but don't re-run the full fan-out for a 20-line delta.
 5. Emit an updated summary with a resolution table (prior finding → status) and any new findings, then a fresh verdict.
+6. Regenerate `pr-review-plain.md` to match the updated summary.
 
 ---
 

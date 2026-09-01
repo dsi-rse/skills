@@ -1,0 +1,17 @@
+{
+  "name": "dsi-rse",
+  "owner": {
+    "name": "UChicago DSI RSE",
+    "url": "https://github.com/dsi-rse"
+  },
+  "description": "Shared agent skills for the UChicago DSI Research Software Engineering team.",
+  "plugins": [
+    {
+      "name": "dsi-rse-skills",
+      "source": "./",
+      "description": "DSI RSE agent skills: structured PR review and more.",
+      "category": "engineering",
+      "keywords": ["skills", "code-review", "pr-review"]
+    }
+  ]
+}

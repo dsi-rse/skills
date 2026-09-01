@@ -1,0 +1,15 @@
+{
+  "name": "dsi-rse-skills",
+  "version": "0.1.0",
+  "description": "Shared agent skills for the UChicago DSI Research Software Engineering team.",
+  "author": {
+    "name": "UChicago DSI RSE",
+    "url": "https://github.com/dsi-rse"
+  },
+  "repository": "https://github.com/dsi-rse/skills",
+  "license": "MIT",
+  "keywords": ["skills", "code-review", "pr-review", "engineering"],
+  "skills": [
+    "./skills/engineering/pr-review"
+  ]
+}
