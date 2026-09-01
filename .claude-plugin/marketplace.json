@@ -9,9 +9,9 @@
     {
       "name": "dsi-rse-skills",
       "source": "./",
-      "description": "DSI RSE agent skills: structured PR review and more.",
+      "description": "DSI RSE agent skills: structured PR review, supervised model search, and more.",
       "category": "engineering",
-      "keywords": ["skills", "code-review", "pr-review"]
+      "keywords": ["skills", "code-review", "pr-review", "machine-learning", "model-selection"]
     }
   ]
 }
