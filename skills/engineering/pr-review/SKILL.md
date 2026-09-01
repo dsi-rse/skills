@@ -5,7 +5,7 @@ description: Structured, multi-agent PR review workflow producing markdown findi
 
 # PR Review
 
-A structured PR review workflow: gate, gather context, map the diff, verify by running, fan out focused reviewers, filter false positives, and produce three markdown deliverables — a findings file, a summary with line-anchored notes tagged by HIPPO severity ending in an explicit verdict, and a plain-language translation of both.
+A structured PR review workflow: gate, gather context, map the diff, verify by running, fan out focused reviewers, filter false positives, and produce two markdown deliverables — a findings file and a summary with line-anchored notes tagged by HIPPO severity, ending in an explicit verdict — then revise both into plain English in a final editing pass.
 
 The goal is a review a strong human reviewer would give: grounded in the PR's actual requirements and the repo's own conventions, verified by execution where possible, honest about severity, and high signal — every comment either actionable or explicitly marked as non-blocking.
 
@@ -224,19 +224,13 @@ Apply consistently — severity inflation is the fastest way to make a review ig
 
 When torn between tiers, pick the lower and state the doubt — an honest "Important, arguably High" beats a defensive "High".
 
-### Plain-language pass (always last)
+### Plain-English pass (always last)
 
-After both files are final, write `pr-review-plain.md`: a translation of the output documents at a high school reading level. No jargon, no acronyms without spelling them out (HIPPO, N+1, CSRF, etc.), no assumed programming knowledge beyond what a technically curious non-engineer has.
+After both files are drafted, revise them — same files, same structure, same facts — for readability. Aim for a high school reading level where possible; keep technical language where precision requires it (a race condition is a race condition), but spell out acronyms on first use and cut reviewer jargon that adds nothing ("leverages", "aforementioned", "it should be noted that"). Prefer short sentences, active voice, and real-world consequences ("an attacker could read other users' data") next to the technical claim. Never let simplification change a finding's meaning, severity, or line anchors.
 
-- One short paragraph: what the change does and the verdict, in plain words ("this is safe to merge once two problems are fixed").
-- One bullet per High/Important finding: what's wrong, why it matters in real-world terms ("an attacker could read other users' data"), and what the fix is.
-- One sentence each on what was checked and came back clean, and anything notably well done.
+As part of the same pass, clean up the markdown so it pastes cleanly into GitHub: no manually wrapped lines (each paragraph and bullet is a single line — GitHub renders hard breaks literally), blank lines between blocks, standard `-` bullets and `##` headings, and backticks around file paths and code identifiers. No line should end mid-sentence.
 
-This file is for stakeholders who won't read the technical review — write it so they don't have to.
-
-Finish with a markdown cleanup so the file pastes cleanly into a GitHub comment: no manually wrapped lines (each paragraph and bullet is a single line — GitHub renders hard breaks literally), blank lines between blocks, standard `-` bullets and `##` headings, and backticks around file paths and code identifiers. Verify with `grep`-level scrutiny: no line ends mid-sentence.
-
-Finish by presenting all three files and offering to (a) drill into any finding, (b) draft fixes for High/Important items, or (c) post the notes as GitHub review comments (`gh pr review` / `gh api`).
+Finish by presenting both files and offering to (a) drill into any finding, (b) draft fixes for High/Important items, or (c) post the notes as GitHub review comments (`gh pr review` / `gh api`).
 
 ## Phase 8 — Re-review (delta mode)
 
@@ -247,7 +241,7 @@ When the author has pushed fixes after a prior review:
 3. For each prior High/Important finding, classify: **resolved** (verify the fix, don't take the commit message's word), **acknowledged-won't-fix** (author responded; record it), or **unaddressed**.
 4. Review the *new* changes themselves at proportional depth — fixes introduce bugs too, but don't re-run the full fan-out for a 20-line delta.
 5. Emit an updated summary with a resolution table (prior finding → status) and any new findings, then a fresh verdict.
-6. Regenerate `pr-review-plain.md` to match the updated summary.
+6. Run the plain-English pass on the updated documents.
 
 ---
 
