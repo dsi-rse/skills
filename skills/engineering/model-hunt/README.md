@@ -13,35 +13,40 @@ video, graph, geospatial, time-series — and any prediction type: classificatio
 regression, segmentation, detection, ranking, forecasting. The defining criterion is that
 the model is a **predictive function** learned from labeled examples and scored by a metric.
 
-## When to use it — and when not to
+## How to install
 
-The skill is built for a **complete run from a blank slate**. It starts by helping you
-decide everything — what the evaluation metric should be, how the folds are constructed,
-whether the winner is the strict metric maximum or the simplest model statistically
-equivalent to it, what the candidate space even is — and treats all of those as open
-questions to be settled with you before any model is trained. That design phase is most of
-the skill's value, and it is deliberately expensive.
+1. Install only the model-hunt; requires npx:
 
-That makes it the wrong tool for extending a search you have already run. If you have a
-framework, a metric, and a validated protocol in place and you just want to add a few
-configurations, fold in new data, or re-run last quarter's hunt against a new model family,
-keep all of those fixed and extend the existing harness. See [Alternatives](#alternatives).
+```bash
+npx skills add dsi-rse/skills --skill model-hunt
+```
 
-## Use
+2. Install all DSI-RSE skills:
 
-Describe what you want — in plan mode, if you want to review the campaign before it burns
-your budget:
+```bash
+claude plugin marketplace add dsi-rse/skills
+claude plugin install dsi-rse-skills@dsi-rse
+```
 
-> I need a model to predict `churn` from the customer table in `data/`. Consider random
-> forests, boosted decision trees, and neural networks. The metric is balanced accuracy —
-> customers who churn are rare and I care about them equally. Rows from the same account
-> are not independent. You have 8 hours, 16 CPU cores, and an RTX 3060. Put the final model
-> in `models/`, detailed notes in `docs/experiments/`, and give me a short `summary.md` I
-> can paste into the PR.
+## How to use
 
-Anything you leave out, Claude will ask about — above all the metric, what makes two
-examples non-independent, the time-box, and every output path, since the skill assumes no
-filenames and no directory conventions. Anything it can find in the repo, it finds first.
+What I've found works best is to start Claude and say, "No code changes" and then describe the problem—everything you can think of that would be relevant, including what modeling strategies you have in mind. Then say, "You got that?" and when it acknowledges, switch to Plan Mode and run
+
+```
+/model-hunt
+```
+
+on one line. Then it will ask questions if there's any ambiguity. In particular, it will force you to choose an objective metric, and a secondary metric (like simplicity) if you want to consider statistically equivalent results to be ties.
+
+The reason that I don't just start with `/model-hunt` is because it must have some limit on the number of questions it can ask, and it doesn't ask enough to fully characterize the project. The questions are best for a few overlooked details, not the entire project.
+
+A typical time-box is on the order of 24 hours, and during this time, Claude Code must not shut down. It's not a bad idea to check in on it from time to time, to make sure it hasn't forgotten to check to see if its tasks are done or crashed. On a laptop, run [caffeinate](https://www.theapplegeek.co.uk/blog/caffeinate) and keep the laptop plugged in. On a remote machine through an ssh connection, run `/bg` in Claude Code to turn the currently running agent into a background process that can be restored with
+
+```bash
+claude agents
+```
+
+On [the DSI cluster](https://cluster-policy.ds.uchicago.edu/), you have to tell it to do all computationally expensive operations in SLURM (it follows that command well) and you can only foreground agents on the same head node they were started on. That's tricky because we can't specify which `ds01`, `ds02`, `ds03` to connect to. Calling `/resume` on an agent that's running on another machine interrupts the first one, which means that you'll need to remind Claude to continue the campaign. Fortunately, SLURM jobs are unaffected, and the agent restored on a new head node can take over watching them.
 
 ## What it does
 
