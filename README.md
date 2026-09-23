@@ -26,6 +26,7 @@ claude plugin install dsi-rse-skills@dsi-rse
 
 | Skill | Invocation | What it does |
 |---|---|---|
+| [`clinic-pr-review`](skills/clinic/clinic-pr-review/) | user- or model-invoked | A TA's review of a Data Science Clinic student PR. Runs it from a fresh clone in Docker, checks notebooks, code, the linked task, and data science basics against a short clinic checklist, and writes a short, paste-ready list of requested changes for the TA to verify and post. |
 | [`model-hunt`](skills/engineering/model-hunt/) | model-invoked | Time-boxed, multi-round search for the best supervised ML model on a dataset. Stages cheap elimination into gold-standard cross-validation, trains the winner, and leaves a queryable record of every configuration tried. |
 | [`pr-review`](skills/engineering/pr-review/) | user- or model-invoked | Structured multi-agent PR review with HIPPO severity tags (High, Important, Personal preference, Opinion). Gates, diff mapping, verification by running, fan-out reviewers, false-positive filtering. |
 
