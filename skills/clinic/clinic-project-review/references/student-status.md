@@ -48,7 +48,6 @@ Common near-misses worth flagging as *partly*:
 
 - A criterion with no verifiable output ("explore the data", "understand the model").
 - A criterion depending on a file not in the repo ("see my notebook") — the reviewer cannot find it.
-- Several unrelated deliverables in one issue, so "done" is ambiguous when one of them is finished.
 - Criteria that would pass with code that never runs on real data.
 
 Quote the weakest criterion verbatim, short. A mentor coaching a student on task writing needs the

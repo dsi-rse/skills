@@ -33,7 +33,8 @@ gh repo view --json name,description,url,pushedAt,defaultBranchRef
   criteria against, not a generic one.
 
 If the README has no project brief, no goals, or no student list, note it. The brief and goals are
-the mentor's responsibility, and their absence is worth one line in the report.
+the clinic staff's responsibility, and their absence is worth one line in the report for the mentor 
+to report it. The student list is the students' responsibility and the mentor should know if someone is missing.
 
 ### Every issue
 
@@ -86,6 +87,18 @@ branch is making work visible even before a PR exists:
 git fetch --all --prune
 git log --all --since="<window start>" --pretty='%h|%an|%aI|%d %s' --no-merges
 ```
+
+If the fetch fails on authentication — typically an SSH remote (`git@github.com:...`) on a machine
+without SSH keys — do not change the remote or the mentor's git config. Treat the clone as stale and
+use the API, branch by branch:
+
+```bash
+gh api "repos/<owner>/<repo>/branches?per_page=100" --paginate --jq '.[].name'
+gh api "repos/<owner>/<repo>/commits?sha=<branch>&since=<ISO>&per_page=100" --paginate \
+  --jq '.[] | {sha: .sha[0:7], login: .author.login, date: .commit.author.date, msg: (.commit.message | split("\n")[0])}'
+```
+
+The same commit shows up on every branch that contains it; dedupe by SHA.
 
 ### Anything else that shows work
 

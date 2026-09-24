@@ -1,7 +1,7 @@
 # Overall direction
 
 Two questions about the project rather than the students, plus a risk note. Keep the whole section
-under a page — a mentor who wants depth will ask.
+one paragraph  — a mentor who wants depth will ask.
 
 ## 1. Do the tasks serve the project goals?
 
@@ -32,7 +32,9 @@ for each completed task: how long between creation and close, and how much work 
 
 | Signal | Reading |
 |---|---|
-| Most tasks carry over 2+ weeks | too big |
+| Most tasks carry over 2+ weeks | too big 
+| Tasks have most week completed in 1 week, but reviews are slow | tasks okay, TA is slow |
+| Tasks have most work completed in 1 week, but review response drags | Students need to prioritize closing out old reviews | 
 | Tasks closed with substantial merged work, weekly | about right |
 | Tasks closed in a day or two, repeatedly, with small diffs | too small — the student has idle hours |
 | Tasks closed on time but with acceptance criteria quietly unmet | too big, and being absorbed by cutting scope silently |
