@@ -3,6 +3,7 @@
 **Review window:** <ISO start> → <ISO end> (<n> days) · **History reviewed:** <ISO start> → <ISO end>
 **Repository:** <url> · **Reviewed:** <date>
 *(Training repos only:)* **Training mode:** students read from `[student:…]` tags, not GitHub logins.
+**Box access:** <yes / skipped — reason / not used by this project>
 **Code run:** <Docker / uv without Docker / pip without Docker / not run (mentor chose read-only)>
 
 ## The project in brief

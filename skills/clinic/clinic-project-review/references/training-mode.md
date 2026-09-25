@@ -22,8 +22,10 @@ from `[student:…]` tags, not GitHub logins."*
 [student:<name>]
 ```
 
-`<name>` is a short label with no spaces — `A`, `B`, `C`, or `alex`. Matching is case-insensitive
-(`[Student:a]` is student `A`). Write it anywhere in:
+`<name>` must match a student listed in the README's roster — e.g. `A` for "Student A", or
+`alex` for "Alex Kim". Matching is case-insensitive (`[Student:a]` is student `A`). A tag naming
+nobody on the README roster is not a student — it is usually documentation of the syntax
+(`[student:X]`) — so ignore it and do not add it to the roster. Write it anywhere in:
 
 | Artifact | Where the tag goes | Example |
 |---|---|---|
@@ -57,19 +59,23 @@ Fall back to normal attribution by login. One rule, applied in order:
 
 ## Do not read the answer key
 
-Sample repos carry files that describe what each role was *meant* to do — the seed script
-(`docs/seed/`), a pre-generated sample review (`docs/sample-review.md`), the session runbook's
-role notes. Do not open them, and never use them as evidence. The exercise is whether the review
+Facilitator materials that describe what each role was *meant* to do — the seed script, a
+pre-generated sample review — are kept out of sample repos (in `dsi-rse/clinic-automation`). If a
+sample repo still contains one (a `seed` script, a `sample-review.md`), do not open it, keep it
+out of any `git show` or diff you read, and never use it as evidence. The session runbook
+(`docs/SESSION.md`) is fine to read. The exercise is whether the review
 finds the problems from the issues, commits, and PRs alone; knowing the intended failure in advance
 turns it into a confirmation of the script. (The README and project docs are fine, as in any review.)
 
 ## Roster
 
-Build the roster from the distinct tags plus the real logins that did untagged work. The Phase 0
-roster confirmation is still blocking, but for tagged students the mapping is **tag ↔ the login
-that played it**, not real name ↔ login — there is no real name and no login of their own. Confirm
-it like: *"Students: A, B, C (tags, played by `tspread`), plus `jdoe` and `mlee`. `tspread` is the
-facilitator — right?"*
+Take the students from the README's roster, as in any review. For each, find the tag that names
+them and the login that played it; add any real mentors-as-students whose own logins did untagged
+work. The Phase 0 roster confirmation is still blocking, but for tagged students the mapping is
+**README name ↔ tag ↔ the login that played it** — they have no login of their own. The
+facilitator is never a student in their own right; their login appears only as "played by".
+Confirm it like: *"Students: A, B, C (tags, played by `tspread`), plus `jdoe` and `mlee`. `tspread`
+is the facilitator — right?"*
 
 In the report, head each tagged student's section `### Student A (played by @tspread)` in place of
 the template's `### <Student name> (`<login>`)`, and use `Student A` in the at-a-glance table.

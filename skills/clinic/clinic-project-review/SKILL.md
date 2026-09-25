@@ -77,6 +77,7 @@ Read these on demand, not all at once.
 |---|---|
 | `references/evidence.md` | Phase 1–2 — the exact data to pull and how to attribute it |
 | `references/training-mode.md` | Prerequisites §2 — only when the repo is `clinic-YYYY-sample` (mentor training) |
+| `references/box-access.md` | Prerequisites §4 — checking the mentor can read the project's Box data |
 | `references/running-code.md` | Phase 2b — running the code, with or without Docker (only if the mentor opted in) |
 | `references/student-status.md` | Phase 3 — the per-student checks and how to judge each |
 | `references/direction.md` | Phase 4 — goal alignment and task sizing |
@@ -173,7 +174,15 @@ clone and how long the review takes. First check quietly what the machine has �
 Offer **Yes, run it** and **No, read-only**. Record the answer; do not ask again later in the
 session. On a no, skip Phase 2b entirely and add "code was not run" to the report's gaps.
 
-### 4. Offer to make the choice stick
+### 4. Check Box data access
+
+If the project keeps its data in Box (`DATA_DIR` in `.env.example`), check the mentor can read it,
+following `references/box-access.md` — whether or not they chose to run the code. List the folder
+read-only; if it fails, walk the mentor through the likely cause (Box Drive not installed, folder
+not shared, WSL mount missing). They may skip it, but recommend strongly that they fix it: without
+it you cannot check that students' data inputs exist, and they will need the access all quarter.
+
+### 5. Offer to make the choice stick
 
 A mentor who started outside a repo will be asked again next week. Offer once, after the repo is
 confirmed:

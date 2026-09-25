@@ -64,8 +64,9 @@ or `make` target, read it. Skip — and note — anything that:
   damage data for the whole team. Reading is fine.
 - pushes, deploys, sends email or Slack messages, or calls a paid API.
 - needs secrets the mentor has not already placed in `.env`. If the mentor has a clone with a
-  `.env`, copy it into `<scratch>/run`; never print its contents. With no `.env`, `DATA_DIR` is
-  unset: skip every data-dependent run and note it.
+  `.env`, copy it into `<scratch>/run`. The `DATA_DIR` path is not secret and is fine to print; do
+  not print any other values (API keys, tokens). With no `.env`, or if the mentor skipped Box
+  access (`box-access.md`), skip every data-dependent run and note it.
 
 ## 3. What to run
 
@@ -81,7 +82,9 @@ In order, stopping where the evidence is sufficient:
 2. **The test suite** on the default branch, then on each branch with work in the review window:
    `pytest -q` (via `docker compose run --rm <service>` or `uv run`).
 3. **Data access**, if `DATA_DIR` is set: list the folder and load one input file read-only
-   (e.g. read a parquet file's schema and row count). Do **not** run the template's
+   — read only its structure, not the whole file:
+   `uv run python -c "import pyarrow.parquet as pq, sys; f = pq.ParquetFile(sys.argv[1]); print(f.schema_arrow); print(f.metadata.num_rows)" <file>`.
+   Do **not** run the template's
    `make check-data` / `scripts/check_data.py` — it writes a sync-test file into Box. Run only its
    reading part, the same way you would treat any script under the "read before you run" rule.
 4. **Claimed results.** For each claim in the ledger that a run can settle — "the loader works",
