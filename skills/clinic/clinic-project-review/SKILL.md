@@ -1,6 +1,6 @@
 ---
 name: clinic-project-review
-description: Weekly mentor's review of a UChicago DSI Data Science Clinic project repository. Reads the README, every issue, the commits and pull requests, then reports per-student status (did they write tasks, were the tasks well defined, is their work visible on GitHub, is their self-report accurate, are they stuck repeating the same task), judges whether the project's overall direction and weekly task sizes make sense, and proposes a menu of candidate tasks for next week. Use when a mentor, project lead, or instructor asks to review a student project before a weekly meeting — including phrasings like "review my clinic project", "how are my students doing", "weekly project review", "check student progress on this repo", "did my students do their tasks", "what should my students work on next week", or "write next week's clinic tasks".
+description: Weekly mentor's review of a UChicago DSI Data Science Clinic project repository. Reads the README, every issue, the commits and pull requests (and, if the mentor opts in, runs the code — with Docker or without), then reports per-student status (did they write tasks, were the tasks well defined, is their work visible on GitHub, is their self-report accurate, are they stuck repeating the same task), judges whether the project's overall direction and weekly task sizes make sense, and proposes a menu of candidate tasks for next week. Use when a mentor, project lead, or instructor asks to review a student project before a weekly meeting — including phrasings like "review my clinic project", "how are my students doing", "weekly project review", "check student progress on this repo", "did my students do their tasks", "what should my students work on next week", or "write next week's clinic tasks".
 ---
 
 # Clinic project review
@@ -49,7 +49,9 @@ team meeting), with enough history loaded to see multi-week patterns.
 
 4. **Read-only unless asked.** Never create, edit, close, label, or comment on issues, never push,
    never open or merge a pull request, unless the mentor explicitly asks for that specific action.
-   Proposing next week's tasks means *writing them in the report*, not filing them.
+   Proposing next week's tasks means *writing them in the report*, not filing them. Running the
+   project's code (only if the mentor opts in) happens in a throwaway copy on the mentor's machine
+   and changes nothing on GitHub or in the shared data folder.
 
 5. **Patterns beat snapshots.** "Stuck in a loop" and "tasks are too big" are only visible across
    several weeks. Load history past the review window and compare.
@@ -74,6 +76,8 @@ Read these on demand, not all at once.
 | Read | When |
 |---|---|
 | `references/evidence.md` | Phase 1–2 — the exact data to pull and how to attribute it |
+| `references/training-mode.md` | Prerequisites §2 — only when the repo is `clinic-YYYY-sample` (mentor training) |
+| `references/running-code.md` | Phase 2b — running the code, with or without Docker (only if the mentor opted in) |
 | `references/student-status.md` | Phase 3 — the per-student checks and how to judge each |
 | `references/direction.md` | Phase 4 — goal alignment and task sizing |
 | `references/task-design.md` | Phase 5 — what makes a good next-week task |
@@ -140,17 +144,45 @@ Then check access to the chosen repo:
 gh repo view <owner/repo> --json nameWithOwner,viewerPermission
 ```
 
+**Training repos.** If the repo name is exactly `clinic-<year>-sample`, it is a mentor-training
+project where one person may play several students. Switch to training mode
+(`references/training-mode.md`): students come from `[student:<name>]` tags in issue titles, PR
+titles, commit messages, and comments, not from GitHub logins. Tell the mentor you are doing so. In
+any other repo, ignore these tags.
+
 A "could not resolve" error on a repo that exists means the mentor's account lacks access, or the
 token is not SSO-authorized for the org. Say so and stop; ask them to sort out access with clinic
 staff. Never run the review against a repo you cannot fully read.
 
-### 3. Offer to make the choice stick
+### 3. Ask whether to run the code
+
+Ask this now, before any evidence gathering, because the answer decides whether you need a local
+clone and how long the review takes. First check quietly what the machine has — `docker info`,
+`uv --version`, `python3 --version` — so you can tell the mentor what will happen. Then ask with
+`AskUserQuestion`, explaining the cost in plain words:
+
+> Do you want me to run the project's code as part of the review? That means installing the
+> project's Python packages on your computer (usually a few hundred MB to a couple of GB) and running
+> the tests plus any results students reported this week. It adds roughly 15–30 minutes and will use
+> a noticeable amount of CPU and memory while it runs. Nothing is pushed or changed on GitHub.
+> [If Docker is missing:] You don't have Docker, which the project normally uses — I can run it
+> without Docker and will note where that might give different results.
+> If you skip this, I'll check students' claims by reading the code only, and the report will list
+> what couldn't be verified.
+
+Offer **Yes, run it** and **No, read-only**. Record the answer; do not ask again later in the
+session. On a no, skip Phase 2b entirely and add "code was not run" to the report's gaps.
+
+### 4. Offer to make the choice stick
 
 A mentor who started outside a repo will be asked again next week. Offer once, after the repo is
 confirmed:
 
 > Want me to clone this to `~/clinic/<repo>`? Next week, start the session in that folder and I'll
 > pick up the project without asking. A local clone also gives fuller commit history across branches.
+
+Running the code does not need this clone — it uses its own temporary copy in the scratchpad
+(`references/running-code.md` §2) — so the answer here is purely about convenience next week.
 
 Then tell them how to start there on the surface they are using: in the desktop app, pick the
 folder when creating the session; in VS Code, open the folder; in the terminal,
@@ -181,8 +213,8 @@ Ask for the rest in **one batch** with `AskUserQuestion`:
 
 1. **Review window** — default: since the last team meeting, inferred from the issue history;
    fall back to the last 7 days. Offer both.
-2. **Roster and GitHub logins** — show the mapping you inferred (real name ↔ login) and ask the
-   mentor to correct it. **This is blocking**: attributing one student's work to another is the
+2. **Roster and GitHub logins** — show the mapping you inferred (real name ↔ login; in training
+   mode, tag ↔ the login that played it) and ask the mentor to correct it. **This is blocking**: attributing one student's work to another is the
    worst thing this skill can do. Also ask who is *not* a student — mentors, TAs, and external
    collaborators commit to these repos too, and their work must not be counted as a student's.
 3. **Expected weekly hours per student** — default 10.
@@ -223,6 +255,18 @@ This ledger is what makes the report auditable and what keeps you from writing a
 fact. Build it even for a small project; it takes one pass and prevents the characteristic failure
 of this review — a confident sentence about a student's week that the evidence does not support.
 
+## Phase 2b — Run the code (only if the mentor opted in)
+
+Follow `references/running-code.md`. In short: use Docker if it is installed and running, otherwise
+`uv`, otherwise plain `python3`; run each branch in a separate throwaway clone; install, run the tests,
+then run the specific scripts behind this week's claimed results. Read each script before running
+it and skip anything that writes to the shared data folder, pushes, or deploys. Keep it to about 20
+minutes of running.
+
+When you ran without Docker, list the differences that could change the result (operating system,
+missing system libraries, the `/data` path mapping, filename case) and treat a local-only failure
+as *possibly environmental*, not as a student error.
+
 ## Phase 3 — Per-student status
 
 Work through `references/student-status.md` for each student. The five checks:
@@ -232,7 +276,7 @@ Work through `references/student-status.md` for each student. The five checks:
 | Tasks created | Did they write task issues for the week, on time? |
 | Acceptance criteria | Could a reviewer verify "done" without asking them anything? |
 | Visible results | Did work show up on GitHub — pushes, PRs, or a substantive follow-up comment? |
-| Report accuracy | Does what they claimed match what the artifacts show? |
+| Report accuracy | Does what they claimed match what the artifacts show (and, if run, what the code does)? |
 | Repetition | Is this the same task they had last week, and the week before? |
 
 For each, record the verdict, the evidence, and — where useful — **one question the mentor should
@@ -271,7 +315,9 @@ be run in parallel and how their results will be compared.
 ## Phase 6 — Report
 
 Write the report using `templates/report.md`. Keep it short: per-student sections of a few lines
-each, the direction section under a page, then the task menu.
+each, the direction section under a page, then the task menu. Include the **Code run** section:
+what ran and in which environment, or — if the mentor chose read-only — one line saying the code
+was not run and which claims that leaves unverified.
 
 Then, and only then, offer follow-ups:
 

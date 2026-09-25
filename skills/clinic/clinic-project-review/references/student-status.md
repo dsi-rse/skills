@@ -50,6 +50,20 @@ Common near-misses worth flagging as *partly*:
 - A criterion depending on a file not in the repo ("see my notebook") — the reviewer cannot find it.
 - Criteria that would pass with code that never runs on real data.
 
+**Check the named inputs exist and contain what the task needs.** A well-written task can still be
+impossible: the file it names is not in the data folder, or it lacks the column the task depends on
+(a per-capita task on a table with no population). For every input a task names:
+
+1. Look for it where the repo says data lives — `DATA.md`, the README's data section, a data
+   dictionary, `data/` in the repo.
+2. If a schema or data dictionary lists its columns, check the fields the task needs are there.
+3. If the mentor opted in to running the code and `DATA_DIR` is set, read the file's schema
+   read-only (`running-code.md` §3) — the only way to be sure.
+4. If none of those is possible, say the input is **unverified** rather than assuming it is fine.
+
+A missing input or field makes the criteria *partly* at best, whatever their wording, and it is
+often the real explanation for a stuck or over-claimed task — say so in the student's section.
+
 Quote the weakest criterion verbatim, short. A mentor coaching a student on task writing needs the
 actual sentence, and a quoted line lands better than a paraphrase.
 
@@ -89,6 +103,10 @@ Procedure for each claim:
    code that produced it is in the repo and that the number appears in a committed output, a notebook
    output cell, or a PR comment. A reported metric with no committed path to reproducing it is a
    finding regardless of whether it is true.
+5. If the mentor opted in to running the code (`running-code.md`), run the test or script behind the
+   claim and mark the verdict **verified by running**. A failure seen only in a non-Docker run is
+   *unclear*, not *no*, unless the cause is plainly the student's code. If the code was not run, a
+   claim like "the pipeline works" can be at most **yes (by reading)** — say so.
 
 | Verdict | Looks like |
 |---|---|

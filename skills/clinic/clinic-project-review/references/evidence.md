@@ -2,6 +2,14 @@
 
 Everything in the report traces back to something pulled here. Pull once, record it, then interpret.
 
+Two rules for every command below:
+
+- **An error is not an empty result.** `gh` prints GraphQL and permission errors to stderr and can
+  still leave you with no data. Check each pull actually returned JSON before reading "no PRs" or
+  "no issues" as a finding.
+- **Filter JSON with `gh`'s built-in `--jq` or with Python.** A standalone `jq` is often not
+  installed; do not pipe into it.
+
 ## 1. Define the windows
 
 Two time windows, and they are different:
@@ -28,6 +36,7 @@ gh repo view --json name,description,url,pushedAt,defaultBranchRef
   every judgment about direction. Read it fully.
 - Any `PROJECT_SETUP.md`, `TUTORIAL.md`, `DATA.md`, `CONTRIBUTING.md`, `CLAUDE.md`, `AGENTS.md`,
   `docs/` — these tell you what students were told to do and how the project is meant to run.
+  (In a training repo, skip the answer-key files listed in `training-mode.md`.)
 - `.github/ISSUE_TEMPLATE/` — the task template defines what a well-formed task looks like *in this
   repo*. If it has a "Definition of Done" section, that is the standard you judge acceptance
   criteria against, not a generic one.
@@ -58,7 +67,16 @@ Reopenings and reassignments are the cleanest signal for the repetition check.
 
 ```bash
 gh pr list --state all --limit 200 \
-  --json number,title,author,createdAt,updatedAt,mergedAt,closedAt,state,isDraft,url,body,additions,deletions,changedFiles,files,reviews,comments,commits
+  --json number,title,author,createdAt,updatedAt,mergedAt,closedAt,state,isDraft,url,body,additions,deletions,changedFiles,headRefName,reviews,comments
+```
+
+Do not add `commits` or `files` to that bulk query: GitHub sizes the query by its limits, and those
+two fields push it over the node cap, so it fails outright on every repo. Fetch them per PR, for the
+PRs in the review window:
+
+```bash
+gh pr view <n> --json files,commits,mergeCommit \
+  --jq '{files: [.files[].path], merge: .mergeCommit.oid, commits: [.commits[] | {sha: .oid[0:7], authors: [.authors[].login], msg: .messageHeadline}]}'
 ```
 
 For each PR in the review window, note whether it was merged (not just opened), who reviewed it,
@@ -81,7 +99,9 @@ gh api "repos/<owner>/<repo>/commits?since=<ISO>&per_page=100" \
 ```
 
 Look at commits on **all branches**, not just the default one — a student pushing to a feature
-branch is making work visible even before a PR exists:
+branch is making work visible even before a PR exists. Fetching into the mentor's clone is fine: it
+only updates remote-tracking refs (`origin/*`) and never touches their files or local branches.
+Do nothing else in their clone.
 
 ```bash
 git fetch --all --prune
@@ -110,6 +130,8 @@ green. Do not go hunting far — but if the mentor mentioned a second repo, load
 
 The report assigns work to named people. Misattribution is the failure mode with real consequences.
 
+- **Training repos** (`clinic-<year>-sample`) attribute by `[student:<name>]` tag first; see
+  `training-mode.md`. Everywhere else, ignore those tags.
 - **Build the map explicitly**: real name (from the README roster) ↔ GitHub login ↔ commit author
   name and email. Students commonly commit under a personal email, a laptop default name
   (`jsmith@Jane-MacBook-Air.local`), or `noreply@github.com` for web-UI edits.
@@ -146,5 +168,6 @@ Two rules:
 ## 5. What you could not see
 
 Keep a running list of gaps: private repositories, data in Box, results shared in Slack, a linked
-Google Doc, a stale local clone, API results truncated by a limit. Report the list. A mentor who
+Google Doc, a stale local clone, API results truncated by a limit, code that was not run (the
+mentor chose read-only) or was run without Docker. Report the list. A mentor who
 knows what you missed can trust the rest.

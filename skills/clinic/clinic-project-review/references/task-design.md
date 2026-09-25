@@ -16,6 +16,9 @@ Every proposed task must satisfy all five. If one cannot, it is not ready to pro
 3. **Verifiable.** A definition of done a reviewer can check in a couple of minutes: what to run,
    with what input, what the result should be. Written in the style of the repo's task template.
 4. **Justified.** One line tying it to a project goal or to a gap this review found.
+   Any input the task names must exist and contain the fields it needs (checked as in
+   `student-status.md` §2). If you could not verify an input, say so in *Resources*, or give the
+   student a first step to confirm it.
 5. **Concise.** A short description, a definition of done as a bulleted list, optional resources.
    A task nobody reads to the end does not get done.
 
