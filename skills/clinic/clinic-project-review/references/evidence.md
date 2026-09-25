@@ -23,10 +23,14 @@ Two time windows, and they are different:
 - **The review window** — the week under review. Default: from the previous team meeting to now.
   Infer the meeting day from the weekly clustering of issue creation and closing timestamps; the
   clinic rhythm usually leaves a visible spike. Fall back to the last 7 days.
-- **The history window** — for pattern checks (repetition, task sizing, stalled goals). Default
-  4 weeks, i.e. the review window plus the three before it.
+- **The history window** — for pattern checks (repetition, task sizing, stalled goals). It always
+  *includes* the review window: default 4 weeks means the review window plus the three before it.
+  A 1-week history is the review window alone — then there is no earlier week to compare, so judge
+  repetition only from what the issues themselves say ("Week 2", "carrying over from #38"), mark
+  sizing "can't calibrate", and say so once.
 
-Record both windows in ISO dates at the top of the report. Every "last week" statement is meaningless
+Record both windows in ISO dates at the top of the report (the header's review window and
+`history <start> → <end>`). Every "last week" statement is meaningless
 without them, and a mentor reviewing on a Tuesday for a Thursday meeting needs to know which days
 you counted.
 

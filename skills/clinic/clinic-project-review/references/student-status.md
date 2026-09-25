@@ -1,6 +1,6 @@
 # Per-student status checks
 
-Five checks per student. Each gets a verdict, the evidence behind it, and — where it would help —
+Six checks per student. Each gets a verdict, the evidence behind it, and — where it would help —
 one question for the mentor to ask in the meeting.
 
 Use three verdicts and nothing fuzzier: **yes**, **partly**, **no**. Add **unclear** only when the
@@ -62,7 +62,7 @@ impossible: the file it names is not in the data folder, or it lacks the column 
 4. If none of those is possible, say the input is **unverified** rather than assuming it is fine.
 
 A missing input or field makes the criteria *partly* at best, whatever their wording, and it is
-often the real explanation for a stuck or over-claimed task — say so in the student's section.
+often the real explanation for a stuck or over-claimed task — say so in that student's finding.
 
 Quote the weakest criterion verbatim, short. A mentor coaching a student on task writing needs the
 actual sentence, and a quoted line lands better than a paraphrase.
@@ -75,9 +75,13 @@ substantive comment.
 
 | Verdict | Looks like |
 |---|---|
-| yes | pushes or a merged PR in the window, or a follow-up comment with actual results |
-| partly | pushes to a branch with nothing reported, or a report with nothing pushed; a PR open and untouched for days |
-| no | nothing in the window |
+| yes | pushes or a merged PR in the window; for a task with no code, a follow-up comment with actual results |
+| partly | pushes to a branch with nothing reported; a PR open and untouched for days |
+| no | nothing in the window — or **a task that requires code, with no code pushed**, whatever the comments say |
+
+**Code required, none pushed = no.** If the task's criteria call for code (a function, a script, a
+PR), a report comment is not visible work, however detailed. "Reported done, nothing pushed" is
+"no" here and a separate "no" or "partly" under report accuracy.
 
 Then, for coding tasks, note separately whether the work **reached the default branch**. A closed
 issue whose code sits unmerged on a branch is not done, and this is the most common mismatch between
@@ -104,7 +108,7 @@ Procedure for each claim:
    output cell, or a PR comment. A reported metric with no committed path to reproducing it is a
    finding regardless of whether it is true.
 5. If the mentor opted in to running the code (`running-code.md`), run the test or script behind the
-   claim and mark the verdict **verified by running**. A failure seen only in a non-Docker run is
+   claim and mark the verdict ▶ (checked by running). A failure seen only in a non-Docker run is
    *unclear*, not *no*, unless the cause is plainly the student's code. If the code was not run, a
    claim like "the pipeline works" can be at most **yes (by reading)** — say so.
 
@@ -156,16 +160,35 @@ has a different fix:
 Two weeks on a genuinely hard problem with visible weekly progress is not a loop. Say so when that
 is the case — a mentor should not be alarmed by a hard task being hard.
 
+## 6. Were their pull requests reviewed?
+
+Look at every PR the student opened or merged in the review window (`reviews` in the PR list).
+A review counts only if someone **other than the student** submitted it — approved, commented, or
+requested changes. The student's own comments, bots, and a green CI run do not count.
+
+| Value | Looks like |
+|---|---|
+| reviewed | every one of their PRs in the window has at least one review from someone else |
+| never reviewed | at least one of their PRs has no review from anyone else — name it ("never reviewed: PR #45") |
+| — | no PRs in the window |
+
+This is a fact about the project's review flow, not about the student's honesty: a PR merged without
+review does **not** lower Criteria or Accurate, unless the student claimed it was reviewed. If the
+task's criteria require a review, the "never reviewed" cell already says that criterion is unmet.
+Unreviewed PRs across several students are a project-level process note (`direction.md` §3).
+
 ---
 
-## Writing each student's section
+## Putting it in the report
 
-A few lines, not a dossier:
+There are no per-student sections. Each student gets:
 
-1. **One-line summary** of the week.
-2. **The five checks**, each with its verdict and a linked reference. Skip the ones with nothing to
-   say beyond "yes" — a report that spends four lines confirming everything is fine buries the one
-   thing that is not.
-3. **What is notably good.** Say it. Mentors have limited attention for praise-gathering and
-   students rarely hear it.
-4. **The question to ask in the meeting**, if there is one. One is usually enough.
+1. **One row in the Students table** — the six verdicts, each linked to its evidence, plus the one
+   question to ask. Keep cells to a few words.
+2. **A Findings line only where the cell needs explaining** — the specific gap behind a "partly" or
+   "no" that the mentor could not guess from the cell ("PR #45 skips the daily-normals case"), or a
+   gap no column covers. Never restate the verdict: "Visible: no" needs no line saying nothing was
+   pushed. If a task's own criterion is unmet, the verdict is "partly", not "yes" with a footnote.
+   A student whose cells say it all gets no finding line.
+3. **At most one "Good:" line per student**, only if something is notable. Say it — students rarely
+   hear it — but in one line.

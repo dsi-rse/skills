@@ -63,4 +63,4 @@ Do not raise it again this session.
 
 ## 5. Record it
 
-For the report header: **Box access:** yes / skipped — <reason>.
+For the report header: `Box: yes`, or `Box: skipped (<reason>)`.

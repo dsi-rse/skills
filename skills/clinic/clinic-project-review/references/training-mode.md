@@ -77,7 +77,7 @@ facilitator is never a student in their own right; their login appears only as "
 Confirm it like: *"Students: A, B, C (tags, played by `tspread`), plus `jdoe` and `mlee`. `tspread`
 is the facilitator — right?"*
 
-In the report, head each tagged student's section `### Student A (played by @tspread)` in place of
-the template's `### <Student name> (`<login>`)`, and use `Student A` in the at-a-glance table.
+In the report, write tagged students as `Student A` in the tables; the header's training-mode line
+says who played them (`played by @tspread`).
 
 Everything else in the review — the checks, the direction section, the task menu — runs unchanged.
