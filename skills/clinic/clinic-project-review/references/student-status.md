@@ -97,7 +97,7 @@ open the artifacts and compare.
 Procedure for each claim:
 
 1. Find the specific artifact it refers to (commit, file, PR, notebook, output).
-2. Read the actual change, not the message describing it (`git show <sha>`, `gh pr diff <n>`).
+2. Read the actual change, not the message describing it (`git show <sha>`, `gh pr diff <n> -R <owner/repo>`).
 3. Check it against the task's own acceptance criteria, one criterion at a time.
 4. Where the claim is about a *result* — an accuracy number, a row count, a runtime — check that the
    code that produced it is in the repo and that the number appears in a committed output, a notebook

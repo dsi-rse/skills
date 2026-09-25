@@ -2,7 +2,13 @@
 
 Everything in the report traces back to something pulled here. Pull once, record it, then interpret.
 
-Two rules for every command below:
+Three rules for every command below:
+
+- **Always name the repository.** Pass `-R <owner/repo>` to every `gh issue`, `gh pr`, `gh repo
+  view`, and `gh run` command, and run `git` commands in the project clone (`git -C <clone> …`).
+  Without that, `gh` silently uses whatever repository the current directory belongs to — often not
+  the clinic project, since mentors may start the session anywhere — and returns another repo's
+  issues and PRs with no error.
 
 - **An error is not an empty result.** `gh` prints GraphQL and permission errors to stderr and can
   still leave you with no data. Check each pull actually returned JSON before reading "no PRs" or
@@ -29,7 +35,7 @@ you counted.
 ### The repository
 
 ```bash
-gh repo view --json name,description,url,pushedAt,defaultBranchRef
+gh repo view <owner/repo> --json name,description,url,pushedAt,defaultBranchRef
 ```
 
 - `README.md` — the project brief, the goals, and the student list. This is the reference point for
@@ -48,7 +54,7 @@ to report it. The student list is the students' responsibility and the mentor sh
 ### Every issue
 
 ```bash
-gh issue list --state all --limit 500 \
+gh issue list -R <owner/repo> --state all --limit 500 \
   --json number,title,author,assignees,labels,state,createdAt,updatedAt,closedAt,url,body,comments
 ```
 
@@ -66,7 +72,7 @@ Reopenings and reassignments are the cleanest signal for the repetition check.
 ### Every pull request
 
 ```bash
-gh pr list --state all --limit 200 \
+gh pr list -R <owner/repo> --state all --limit 200 \
   --json number,title,author,createdAt,updatedAt,mergedAt,closedAt,state,isDraft,url,body,additions,deletions,changedFiles,headRefName,reviews,comments
 ```
 
@@ -75,7 +81,7 @@ two fields push it over the node cap, so it fails outright on every repo. Fetch 
 PRs in the review window:
 
 ```bash
-gh pr view <n> --json files,commits,mergeCommit \
+gh pr view <n> -R <owner/repo> --json files,commits,mergeCommit \
   --jq '{files: [.files[].path], merge: .mergeCommit.oid, commits: [.commits[] | {sha: .oid[0:7], authors: [.authors[].login], msg: .messageHeadline}]}'
 ```
 
@@ -123,7 +129,7 @@ The same commit shows up on every branch that contains it; dedupe by SHA.
 ### Anything else that shows work
 
 Project boards (`gh project item-list`, if the team uses one), issue cross-references from other
-repos, releases, and CI runs (`gh run list`) when a student's task was about getting the pipeline
+repos, releases, and CI runs (`gh run list -R <owner/repo>`) when a student's task was about getting the pipeline
 green. Do not go hunting far — but if the mentor mentioned a second repo, load it.
 
 ## 3. Attribution — get this right

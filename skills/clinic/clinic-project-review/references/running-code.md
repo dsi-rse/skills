@@ -52,7 +52,7 @@ Then check out each thing you want to run, one at a time, in that same clone:
 | Default branch | already checked out |
 | A branch that still exists | `git -C <scratch>/run switch --detach origin/<branch>` |
 | An open PR (including from a fork) | `git -C <scratch>/run fetch -q origin pull/<n>/head && git -C <scratch>/run switch --detach FETCH_HEAD` |
-| A merged PR whose branch was deleted | its merge commit on the default branch (`gh pr view <n> --json mergeCommit`), which is what actually landed; use `pull/<n>/head` as above only if you need the pre-merge state |
+| A merged PR whose branch was deleted | its merge commit on the default branch (`gh pr view <n> -R <owner/repo> --json mergeCommit`), which is what actually landed; use `pull/<n>/head` as above only if you need the pre-merge state |
 
 Re-run `uv sync` (or rebuild) after each switch if `pyproject.toml` or `uv.lock` changed. Delete
 `<scratch>/run` when done.
@@ -113,7 +113,7 @@ Read a failure with this table in mind. A test that fails locally for one of the
 **possible** environment difference, not a student bug — say "fails locally; may pass in Docker
 because <reason>", and do not mark a student's claim inaccurate on that basis alone. A test that
 **passes** locally usually passes in Docker too, but the case-sensitivity and `/data` rows are the
-common exceptions. If CI runs the tests (`gh run list`), its result is the tiebreaker.
+common exceptions. If CI runs the tests (`gh run list -R <owner/repo>`), its result is the tiebreaker.
 
 ## 5. Record it
 
