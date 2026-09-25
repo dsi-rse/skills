@@ -1,6 +1,6 @@
 # Per-student status checks
 
-Five checks per student. Each gets a verdict, the evidence behind it, and — where it would help —
+Six checks per student. Each gets a verdict, the evidence behind it, and — where it would help —
 one question for the mentor to ask in the meeting.
 
 Use three verdicts and nothing fuzzier: **yes**, **partly**, **no**. Add **unclear** only when the
@@ -160,13 +160,30 @@ has a different fix:
 Two weeks on a genuinely hard problem with visible weekly progress is not a loop. Say so when that
 is the case — a mentor should not be alarmed by a hard task being hard.
 
+## 6. Were their pull requests reviewed?
+
+Look at every PR the student opened or merged in the review window (`reviews` in the PR list).
+A review counts only if someone **other than the student** submitted it — approved, commented, or
+requested changes. The student's own comments, bots, and a green CI run do not count.
+
+| Value | Looks like |
+|---|---|
+| reviewed | every one of their PRs in the window has at least one review from someone else |
+| never reviewed | at least one of their PRs has no review from anyone else — name it ("never reviewed: PR #45") |
+| — | no PRs in the window |
+
+This is a fact about the project's review flow, not about the student's honesty: a PR merged without
+review does **not** lower Criteria or Accurate, unless the student claimed it was reviewed. If the
+task's criteria require a review, the "never reviewed" cell already says that criterion is unmet.
+Unreviewed PRs across several students are a project-level process note (`direction.md` §3).
+
 ---
 
 ## Putting it in the report
 
 There are no per-student sections. Each student gets:
 
-1. **One row in the Students table** — the five verdicts, each linked to its evidence, plus the one
+1. **One row in the Students table** — the six verdicts, each linked to its evidence, plus the one
    question to ask. Keep cells to a few words.
 2. **A Findings line only where the cell needs explaining** — the specific gap behind a "partly" or
    "no" that the mentor could not guess from the cell ("PR #45 skips the daily-normals case"), or a

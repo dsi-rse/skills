@@ -282,7 +282,7 @@ as *possibly environmental*, not as a student error.
 
 ## Phase 3 — Per-student status
 
-Work through `references/student-status.md` for each student. The five checks:
+Work through `references/student-status.md` for each student. The six checks:
 
 | Check | Question |
 |---|---|
@@ -291,6 +291,7 @@ Work through `references/student-status.md` for each student. The five checks:
 | Visible results | Did work show up on GitHub — pushes, PRs, or a substantive follow-up comment? |
 | Report accuracy | Does what they claimed match what the artifacts show (and, if run, what the code does)? |
 | Repetition | Is this the same task they had last week, and the week before? |
+| Review status | Did someone other than the student review their PRs? |
 
 For each, record the verdict, the evidence, and — where useful — **one question the mentor should
 ask in the meeting**. Those questions are frequently the most valuable output of the review.
@@ -346,7 +347,8 @@ So: plain words, active voice, fragments are fine, every claim linked. Use refer
 (`[#42]`, `[report-b]`) with the definitions in one block at the end, so tables stay narrow.
 What each Students cell links to: **Tasks** → the task issue; **Visible** → the strongest artifact
 (merged PR, else open PR, else commit; nothing for "no"); **Accurate** → the student's report
-comment; **Repeating** → the earlier issue it repeats. Say "no commits since
+comment; **Repeating** → the earlier issue it repeats; **Review** → the PR (for "never reviewed",
+the PR that has no review). Say "no commits since
 Tuesday (`a1b2c3d`)", not "engagement appears suboptimal". Cut hedges, adverbs, and restatements.
 Where you are unsure, write the question for the mentor to ask instead of a guess.
 

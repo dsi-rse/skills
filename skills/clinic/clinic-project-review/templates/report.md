@@ -6,12 +6,13 @@
 
 ## Students
 
-| Student | Tasks | Criteria | Visible | Accurate | Repeating | Ask |
-|---|---|---|---|---|---|---|
-| <name> | yes [#42] | partly | yes [PR #45] merged | partly [report-a] ▶ | no | <one short question> |
-| <name> | no | — | no | — | yes, wk 3 [#38] | <one short question> |
+| Student | Tasks | Criteria | Visible | Accurate | Repeating | Review | Ask |
+|---|---|---|---|---|---|---|---|
+| <name> | yes [#42] | partly | yes [PR #45] merged | partly [report-a] ▶ | no | never reviewed [PR #45] | <one short question> |
+| <name> | no | — | no | — | yes, wk 3 [#38] | — | <one short question> |
 
-▶ = checked by running the code · ? = inferred, not seen directly · — = no task to judge.
+▶ = checked by running the code · ? = inferred, not seen directly · — = nothing to judge (no task, or no PR for Review).
+Review = reviewed / never reviewed, by someone other than the student.
 
 ## Findings
 
