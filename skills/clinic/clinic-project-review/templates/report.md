@@ -2,6 +2,9 @@
 
 **Review window:** <ISO start> → <ISO end> (<n> days) · **History reviewed:** <ISO start> → <ISO end>
 **Repository:** <url> · **Reviewed:** <date>
+*(Training repos only:)* **Training mode:** students read from `[student:…]` tags, not GitHub logins.
+**Box access:** <yes / skipped — reason / not used by this project>
+**Code run:** <Docker / uv without Docker / pip without Docker / not run (mentor chose read-only)>
 
 ## The project in brief
 
@@ -23,6 +26,7 @@
 ## Per student
 
 ### <Student name> (`<login>`)
+*(Training repos: `### Student A (played by @<login>)`.)*
 
 <One line summarizing the week.>
 
@@ -63,6 +67,29 @@ the completion evidence behind the call.>
 
 ---
 
+## Code run
+
+*(If the code was not run, replace this section with one line: "Code was not run — the mentor chose
+a read-only review. Claims that working code or a result exists were checked by reading only:
+<list the claims>.")*
+
+**Environment:** <Docker | uv, no Docker | pip, no Docker> on <OS>, commit `<sha>` of <branches>
+
+| What ran | Branch / commit | Result |
+|---|---|---|
+| install | `main` @ `a1b2c3d` | ok |
+| `pytest` | `main` @ `a1b2c3d` | 14 passed |
+| `pytest` | `jane/idw` @ `e4f5a6b` | 1 failed — `test_daily_normals` (link) |
+| `scripts/evaluate.py` (claimed 0.82 in #42) | `jane/idw` | reproduced 0.82 |
+
+**Differences from a Docker run that could matter here** *(only when Docker was not used)*:
+- <e.g. "`src/io.py` hard-codes `/data`; ran with `DATA_DIR` from `.env` instead — may behave differently in Docker">
+- <e.g. "Dockerfile installs GDAL via apt; not available locally, so `test_geo.py` was skipped">
+
+**Skipped:** <long jobs, scripts that write to Box, anything needing missing secrets — with reason>
+
+---
+
 ## Proposed tasks for next week
 
 A menu — pick one per student, or edit one.
@@ -90,5 +117,8 @@ on what metric their results will be compared.)*
 ## What I could not see
 
 - <private repo, Box data, Slack thread, stale clone, truncated query>
+- <code not run (read-only review), or runs that could not reproduce the Docker environment>
 
-*Verdicts marked "inferred" rest on reasoning rather than a directly observed artifact.*
+*Verdicts marked "inferred" rest on reasoning rather than a directly observed artifact. Verdicts
+marked "verified by running" were checked by executing the code; "fails locally" results from a
+non-Docker run may be environment differences rather than bugs.*
