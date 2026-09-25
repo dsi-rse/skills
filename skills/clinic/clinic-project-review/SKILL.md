@@ -67,7 +67,11 @@ team meeting), with enough history loaded to see multi-week patterns.
 8. **Be brief and kind.** Critique the work and the process, never the person. Short sentences,
    plain words, no jargon the mentor would have to decode.
 
-9. **Be concise and objective.** The report should feel objective and clear. Mentors are busy. If the report is too long, they may just skim it. 
+9. **Short beats complete.** Mentors skim. Aim for a report that reads in two minutes: tables for
+   anything repeated per student or per goal, one line per finding, no prose that restates a table.
+   Leave out anything that is fine — "yes" in a table cell is enough. Budget: about 800 words for a
+   three-student project, link definitions excluded; scale with the roster. Say each fact once. If
+   a draft runs longer, cut before sending.
 
 ## Reference map
 
@@ -306,8 +310,8 @@ track nobody has touched in a month, an analysis whose results nobody can reprod
 
 ## Phase 5 — Next week's task menu
 
-Follow `references/task-design.md`. For each student, propose **2–3 candidate tasks** — a menu, not
-an assignment: the mentor knows things you do not and will pick. Each task must be:
+Follow `references/task-design.md`. For each student, propose **one or two candidate tasks** — a
+menu, not an assignment: the mentor knows things you do not and will pick. Each task must be:
 
 - **Independent** — completable without waiting on another student's unfinished work.
 - **Sized to roughly 10 hours** for an undergraduate data science student (or the mentor's number),
@@ -323,13 +327,13 @@ be run in parallel and how their results will be compared.
 
 ## Phase 6 — Report
 
-Write the report using `templates/report.md`. Keep it short: per-student sections of a few lines
-each, the direction section under a page, then the task menu. Include the **Code run** section:
-what ran and in which environment, or — if the mentor chose read-only — one line saying the code
-was not run and which claims that leaves unverified.
+Write the report using `templates/report.md`, and nothing the template does not ask for — no
+per-student prose sections, no evidence ledger, no restating the project brief. The ledger and full
+per-check reasoning stay in your working notes; the mentor can ask for any of it.
 
 Then, and only then, offer follow-ups:
 
+- Expand a chosen task into the full issue text (`task-design.md`, "Full issue text").
 - File the chosen tasks as GitHub issues (using the repo's clinic task template, assigned to the
   student) — **on explicit request only**, and show the exact text before creating anything.
 - Draft the meeting agenda from the mentor's questions.
@@ -338,7 +342,11 @@ Then, and only then, offer follow-ups:
 ### Writing it
 
 The mentor reads this between meetings, and may paste pieces of it into Slack or into an issue.
-So: plain English, active voice, short paragraphs, every claim linked. Say "no commits since
-Tuesday (last: `a1b2c3d`)" rather than "engagement appears suboptimal". Where you are unsure, use a
-question — "worth asking whether the Box access issue is resolved" — because a question invites the
-answer you are missing, and the mentor usually has it.
+So: plain words, active voice, fragments are fine, every claim linked. Say "no commits since
+Tuesday (`a1b2c3d`)", not "engagement appears suboptimal". Cut hedges, adverbs, and restatements.
+Where you are unsure, write the question for the mentor to ask instead of a guess.
+
+| Instead of | Write |
+|---|---|
+| "The weekly report marks both criteria `complete` ("works on my machine"), but there is no function, export, or PR to check." | "Reported done; no branch, PR, or commit." |
+| "Volume by type has landed; response times — half of the stated goal — has no task, even though the dates are in the data." | a table row: `Response times · — · no task yet` |

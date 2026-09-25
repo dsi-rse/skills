@@ -62,7 +62,7 @@ impossible: the file it names is not in the data folder, or it lacks the column 
 4. If none of those is possible, say the input is **unverified** rather than assuming it is fine.
 
 A missing input or field makes the criteria *partly* at best, whatever their wording, and it is
-often the real explanation for a stuck or over-claimed task — say so in the student's section.
+often the real explanation for a stuck or over-claimed task — say so in that student's finding.
 
 Quote the weakest criterion verbatim, short. A mentor coaching a student on task writing needs the
 actual sentence, and a quoted line lands better than a paraphrase.
@@ -104,7 +104,7 @@ Procedure for each claim:
    output cell, or a PR comment. A reported metric with no committed path to reproducing it is a
    finding regardless of whether it is true.
 5. If the mentor opted in to running the code (`running-code.md`), run the test or script behind the
-   claim and mark the verdict **verified by running**. A failure seen only in a non-Docker run is
+   claim and mark the verdict ▶ (checked by running). A failure seen only in a non-Docker run is
    *unclear*, not *no*, unless the cause is plainly the student's code. If the code was not run, a
    claim like "the pipeline works" can be at most **yes (by reading)** — say so.
 
@@ -158,14 +158,15 @@ is the case — a mentor should not be alarmed by a hard task being hard.
 
 ---
 
-## Writing each student's section
+## Putting it in the report
 
-A few lines, not a dossier:
+There are no per-student sections. Each student gets:
 
-1. **One-line summary** of the week.
-2. **The five checks**, each with its verdict and a linked reference. Skip the ones with nothing to
-   say beyond "yes" — a report that spends four lines confirming everything is fine buries the one
-   thing that is not.
-3. **What is notably good.** Say it. Mentors have limited attention for praise-gathering and
-   students rarely hear it.
-4. **The question to ask in the meeting**, if there is one. One is usually enough.
+1. **One row in the Students table** — the five verdicts, each linked to its evidence, plus the one
+   question to ask. Keep cells to a few words.
+2. **A line in Findings for each verdict that is not "yes"** (or "no" for repetition), and for any
+   other gap the mentor should raise — the fact and its link, one line. If a task's own criterion
+   is unmet, the verdict is "partly", not "yes" with a footnote. A student with nothing to raise
+   gets no finding line.
+3. **At most one "Good:" line per student**, only if something is notable. Say it — students rarely
+   hear it — but in one line.

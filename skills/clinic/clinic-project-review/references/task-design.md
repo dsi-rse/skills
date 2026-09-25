@@ -1,8 +1,8 @@
 # Designing next week's tasks
 
-You are proposing a **menu**: 2–3 candidate tasks per student, of which the mentor picks one (or
-edits one). More options than needed is the point — the mentor knows the client conversation, the
-student's interests, and next week's schedule, and you do not.
+You are proposing a **menu**: one or two candidate tasks per student, of which the mentor picks one
+(or edits one). A second option gives the mentor a real choice — they know the client conversation,
+the student's interests, and next week's schedule, and you do not. Two is the ceiling.
 
 ## The five properties
 
@@ -19,8 +19,7 @@ Every proposed task must satisfy all five. If one cannot, it is not ready to pro
    Any input the task names must exist and contain the fields it needs (checked as in
    `student-status.md` §2). If you could not verify an input, say so in *Resources*, or give the
    student a first step to confirm it.
-5. **Concise.** A short description, a definition of done as a bulleted list, optional resources.
-   A task nobody reads to the end does not get done.
+5. **Concise.** In the report, one table row. A task nobody reads to the end does not get done.
 
 ## Sizing for ten hours
 
@@ -81,7 +80,25 @@ if the work genuinely must continue, propose it **re-scoped** with new criteria 
 Keep continuity in mind too: a student who spent two weeks learning a library should get to use it.
 Rotating everyone through unfamiliar ground every week wastes the ramp-up.
 
-## Format for each proposed task
+## Format in the report
+
+One row per task in the report's **Next week** table:
+
+| Column | Content |
+|---|---|
+| # | student initial + option number (`A1`, `A2`) so the mentor can say "expand B2" |
+| Task | verb + object, under ~60 characters |
+| Hrs | the estimate, a number |
+| Done when | the definition of done compressed: artifact + how to check, ending with "PR merged" for coding tasks |
+| Why | a few words: the goal or the gap from this review |
+
+Dependencies, parallel tracks, and fallbacks ("if B2 finds no population data, export raw counts
+instead") go in one line under the table. Everything else — task
+description, full definition of done, resources — waits until the mentor picks a task.
+
+## Full issue text (on request)
+
+When the mentor picks a task and asks for it, expand it to:
 
 ```markdown
 **<Title — a verb and an object, under ~70 characters>**
@@ -107,5 +124,5 @@ paste the task straight into an issue with no editing.
 - **Criteria that would pass with code that never runs on the real data.**
 - **A task whose only deliverable is a Slack message or a verbal update.** Clinic work has to be
   visible in the repository.
-- **Padding the menu.** Two good options beat three where the third exists to make it three.
+- **Padding the menu.** One good option beats two where the second exists to make it two.
 - **Proposing what the mentor already assigned.** Check the open issues first.

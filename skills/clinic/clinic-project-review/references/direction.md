@@ -1,7 +1,8 @@
 # Overall direction
 
-Two questions about the project rather than the students, plus a risk note. Keep the whole section
-one paragraph  — a mentor who wants depth will ask.
+Two questions about the project rather than the students, plus a risk note. In the report this is
+one goal table and at most three one-line bullets (sizing, risk, and one process note if it
+matters). A mentor who wants depth will ask.
 
 ## 1. Do the tasks serve the project goals?
 
@@ -32,22 +33,24 @@ for each completed task: how long between creation and close, and how much work 
 
 | Signal | Reading |
 |---|---|
-| Most tasks carry over 2+ weeks | too big 
-| Tasks have most week completed in 1 week, but reviews are slow | tasks okay, TA is slow |
-| Tasks have most work completed in 1 week, but review response drags | Students need to prioritize closing out old reviews | 
+| Most tasks carry over 2+ weeks | too big |
+| Work done within the week, but PRs wait days for a first review | size okay; reviewer is the bottleneck |
+| Work done within the week, but students are slow to answer review comments | size okay; students need to close out reviews |
 | Tasks closed with substantial merged work, weekly | about right |
 | Tasks closed in a day or two, repeatedly, with small diffs | too small — the student has idle hours |
 | Tasks closed on time but with acceptance criteria quietly unmet | too big, and being absorbed by cutting scope silently |
 | One student's tasks are consistently larger than the others' | uneven load; worth naming |
 
-That fourth row is the one to watch for. It looks like a healthy board and is not.
+The "criteria quietly unmet" row is the one to watch for. It looks like a healthy board and is not.
 
 Report the sizing judgment **per student as well as overall** when they differ — the fix ("give this
 student a bigger slice next week") is per student.
 
 ## 3. Process observations
 
-Only when the evidence supports them, one line each, no more than a handful:
+Only when the evidence supports them, and only if it is project-level and not already a student
+finding (say each fact once — a student's unreviewed PR belongs in Findings). Put at most one in the
+report; the rest can wait for the mentor to ask:
 
 - **Task hygiene** — are tasks written before work starts, or retroactively? Retroactive issues (an
   issue created the same day it is closed, after the commits landed) mean the board is a log, not a

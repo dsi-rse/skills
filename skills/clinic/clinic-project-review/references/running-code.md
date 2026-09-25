@@ -117,8 +117,8 @@ common exceptions. If CI runs the tests (`gh run list -R <owner/repo>`), its res
 
 ## 5. Record it
 
-For the report's **Code run** section: the environment used (Docker / `uv` / `pip` / not run), the
-commits and branches run, one line per thing run with pass/fail and a link, the differences from
-Docker that apply, and anything skipped with the reason. Feed each result into the matching
+For the report's **Code run** section: one table row per thing run (what, branch @ commit, result),
+then one line with the Docker differences that could have changed a result (omit the line if none)
+and what was skipped and why. The environment goes in the report header. Feed each result into the matching
 ledger row and into the report-accuracy check (`student-status.md` §4), marking those verdicts
-**verified by running**.
+with ▶ in the report's Students table.

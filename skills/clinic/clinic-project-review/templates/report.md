@@ -1,124 +1,56 @@
-# Weekly project review: <project name>
+# <Project name>: week of <ISO start> → <ISO end>
 
-**Review window:** <ISO start> → <ISO end> (<n> days) · **History reviewed:** <ISO start> → <ISO end>
-**Repository:** <url> · **Reviewed:** <date>
-*(Training repos only:)* **Training mode:** students read from `[student:…]` tags, not GitHub logins.
-**Box access:** <yes / skipped — reason / not used by this project>
-**Code run:** <Docker / uv without Docker / pip without Docker / not run (mentor chose read-only)>
+<repo url> · reviewed <date> · history <n> wk · Box: <yes / skipped / n/a> · Code: <Docker / uv / pip / not run>
+*(Training repos only:)* Training mode: students read from `[student:…]` tags, played by @<login>.
+<If any: "Excluded: <n> commits by <mentor/facilitator/bot>.">
 
-## The project in brief
+## Students
 
-<Two or three sentences: the client, the problem, what a finished version looks like.>
+| Student | Tasks | Criteria | Visible | Accurate | Repeating | Ask |
+|---|---|---|---|---|---|---|
+| <name> | yes [#42] | partly | yes [PR #45] merged | partly ▶ | no | <one short question> |
+| <name> | no | — | no | — | yes, wk 3 [#38] | <one short question> |
 
-**Goals (from the README):**
-1. <goal>
-2. <goal>
+▶ = checked by running the code · ? = inferred, not seen directly. Link every cell that cites evidence.
 
-## This week at a glance
+## Findings
 
-| Student | Tasks written | Work visible | Report accurate | Repeating a task | Ask them about |
-|---|---|---|---|---|---|
-| <name> | yes (#42) | yes (3 commits, PR #45) | partly | no | the untested daily-normals path |
-| <name> | no | no | — | yes (3rd week on #38) | what is blocking the scraper |
+Only what needs the mentor's attention, most important first. One line each: student, fact, link.
 
----
-
-## Per student
-
-### <Student name> (`<login>`)
-*(Training repos: `### Student A (played by @<login>)`.)*
-
-<One line summarizing the week.>
-
-- **Tasks written:** <verdict> — <evidence with links>
-- **Acceptance criteria:** <verdict> — <evidence; quote the weakest criterion if it is weak>
-- **Visible results:** <verdict> — <commits, PRs, comments; whether work reached the default branch>
-- **Report accuracy:** <verdict> — <the claim, the artifact, and the gap if there is one>
-- **Repetition:** <verdict> — <how many weeks, and which kind of stuck if stuck>
-- **Good work:** <what was notably well done, if anything>
-- **Question for the meeting:** <one question>
-
-*(Repeat per student. Skip any check with nothing to say beyond "yes".)*
-
----
+- **<name>:** <fact> ([#n], `sha`)
+- **<name>:** <fact>
+- **Good:** <name> — <one notable thing done well>
 
 ## Direction
 
-**Tasks against goals**
+| Goal | Tasks | Status |
+|---|---|---|
+| <goal> | #42, done #17 | advancing |
+| <goal> | — | **no task since <date>** |
 
-| Goal | Active tasks | Completed | Status |
-|---|---|---|---|
-| <goal> | #42 | #17, #23 | advancing |
-| <goal> | — | — | no task since <date> |
-
-<One paragraph: orphan tasks, orphan goals, whether the trajectory reaches the deliverable in the
-time left.>
-
-**Task sizing:** <too big / about right / too small, overall and per student where they differ, with
-the completion evidence behind the call.>
-
-**Process notes**
-
-- <one line each, only where the evidence supports it>
-
-**Risks**
-
-- <risk> — <what would resolve it>
-
----
+- **Sizing:** <too big / right / too small> — <evidence, a few words>
+- **Risk:** <risk> — <fix>
 
 ## Code run
 
-*(If the code was not run, replace this section with one line: "Code was not run — the mentor chose
-a read-only review. Claims that working code or a result exists were checked by reading only:
-<list the claims>.")*
-
-**Environment:** <Docker | uv, no Docker | pip, no Docker> on <OS>, commit `<sha>` of <branches>
-
-| What ran | Branch / commit | Result |
+| Ran | On | Result |
 |---|---|---|
-| install | `main` @ `a1b2c3d` | ok |
 | `pytest` | `main` @ `a1b2c3d` | 14 passed |
-| `pytest` | `jane/idw` @ `e4f5a6b` | 1 failed — `test_daily_normals` (link) |
-| `scripts/evaluate.py` (claimed 0.82 in #42) | `jane/idw` | reproduced 0.82 |
 
-**Differences from a Docker run that could matter here** *(only when Docker was not used)*:
-- <e.g. "`src/io.py` hard-codes `/data`; ran with `DATA_DIR` from `.env` instead — may behave differently in Docker">
-- <e.g. "Dockerfile installs GDAL via apt; not available locally, so `test_geo.py` was skipped">
+Not Docker: <only differences that could change a result, one line; omit if none>. Skipped: <what, why>.
+*(If not run: "Not run (read-only). Unverified: <claims>." — one line, no table.)*
 
-**Skipped:** <long jobs, scripts that write to Box, anything needing missing secrets — with reason>
+## Next week
 
----
+Pick one per student. Say which to expand into a full issue.
 
-## Proposed tasks for next week
+| # | Student | Task | Hrs | Done when | Why |
+|---|---|---|---|---|---|
+| A1 | <name> | <verb + object> | ~8 | <artifact + check>; PR merged | <goal or gap> |
+| A2 | <name> | <verb + object> | ~6 | <artifact + check> | <goal or gap> |
 
-A menu — pick one per student, or edit one.
+<One line naming any parallel tracks and the shared metric.>
 
-### <Student name>
+## Not seen
 
-**<Option 1 title>**
-*Why:* <one line>
-*Estimate:* ~<n> hours — <justification>
-*Task:* <2–4 sentences>
-*Definition of done:*
-- <verifiable item>
-- <verifiable item>
-*Resources:* <optional>
-*Independence:* <no dependencies / dependency plus fallback>
-
-**<Option 2 title>**
-<same shape>
-
-*(Repeat per student. Note explicitly where two proposals are meant to run as parallel tracks and
-on what metric their results will be compared.)*
-
----
-
-## What I could not see
-
-- <private repo, Box data, Slack thread, stale clone, truncated query>
-- <code not run (read-only review), or runs that could not reproduce the Docker environment>
-
-*Verdicts marked "inferred" rest on reasoning rather than a directly observed artifact. Verdicts
-marked "verified by running" were checked by executing the code; "fails locally" results from a
-non-Docker run may be environment differences rather than bugs.*
+<Comma-separated: Slack, Box, stale clone, meeting days, code not run, …>
