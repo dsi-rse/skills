@@ -75,9 +75,13 @@ substantive comment.
 
 | Verdict | Looks like |
 |---|---|
-| yes | pushes or a merged PR in the window, or a follow-up comment with actual results |
-| partly | pushes to a branch with nothing reported, or a report with nothing pushed; a PR open and untouched for days |
-| no | nothing in the window |
+| yes | pushes or a merged PR in the window; for a task with no code, a follow-up comment with actual results |
+| partly | pushes to a branch with nothing reported; a PR open and untouched for days |
+| no | nothing in the window — or **a task that requires code, with no code pushed**, whatever the comments say |
+
+**Code required, none pushed = no.** If the task's criteria call for code (a function, a script, a
+PR), a report comment is not visible work, however detailed. "Reported done, nothing pushed" is
+"no" here and a separate "no" or "partly" under report accuracy.
 
 Then, for coding tasks, note separately whether the work **reached the default branch**. A closed
 issue whose code sits unmerged on a branch is not done, and this is the most common mismatch between
@@ -164,9 +168,10 @@ There are no per-student sections. Each student gets:
 
 1. **One row in the Students table** — the five verdicts, each linked to its evidence, plus the one
    question to ask. Keep cells to a few words.
-2. **A line in Findings for each verdict that is not "yes"** (or "no" for repetition), and for any
-   other gap the mentor should raise — the fact and its link, one line. If a task's own criterion
-   is unmet, the verdict is "partly", not "yes" with a footnote. A student with nothing to raise
-   gets no finding line.
+2. **A Findings line only where the cell needs explaining** — the specific gap behind a "partly" or
+   "no" that the mentor could not guess from the cell ("PR #45 skips the daily-normals case"), or a
+   gap no column covers. Never restate the verdict: "Visible: no" needs no line saying nothing was
+   pushed. If a task's own criterion is unmet, the verdict is "partly", not "yes" with a footnote.
+   A student whose cells say it all gets no finding line.
 3. **At most one "Good:" line per student**, only if something is notable. Say it — students rarely
    hear it — but in one line.

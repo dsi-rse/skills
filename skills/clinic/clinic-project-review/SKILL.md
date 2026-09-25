@@ -342,7 +342,11 @@ Then, and only then, offer follow-ups:
 ### Writing it
 
 The mentor reads this between meetings, and may paste pieces of it into Slack or into an issue.
-So: plain words, active voice, fragments are fine, every claim linked. Say "no commits since
+So: plain words, active voice, fragments are fine, every claim linked. Use reference-style links
+(`[#42]`, `[report-b]`) with the definitions in one block at the end, so tables stay narrow.
+What each Students cell links to: **Tasks** → the task issue; **Visible** → the strongest artifact
+(merged PR, else open PR, else commit; nothing for "no"); **Accurate** → the student's report
+comment; **Repeating** → the earlier issue it repeats. Say "no commits since
 Tuesday (`a1b2c3d`)", not "engagement appears suboptimal". Cut hedges, adverbs, and restatements.
 Where you are unsure, write the question for the mentor to ask instead of a guess.
 

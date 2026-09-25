@@ -1,6 +1,6 @@
 # <Project name>: week of <ISO start> → <ISO end>
 
-<repo url> · reviewed <date> · history <n> wk · Box: <yes / skipped / n/a> · Code: <Docker / uv / pip / not run>
+<repo url> · reviewed <date> · history <ISO start> → <ISO end> · Box: <yes / skipped / n/a> · Code: <Docker / uv / pip / not run>
 *(Training repos only:)* Training mode: students read from `[student:…]` tags, played by @<login>.
 <If any: "Excluded: <n> commits by <mentor/facilitator/bot>.">
 
@@ -8,17 +8,17 @@
 
 | Student | Tasks | Criteria | Visible | Accurate | Repeating | Ask |
 |---|---|---|---|---|---|---|
-| <name> | yes [#42] | partly | yes [PR #45] merged | partly ▶ | no | <one short question> |
+| <name> | yes [#42] | partly | yes [PR #45] merged | partly [report-a] ▶ | no | <one short question> |
 | <name> | no | — | no | — | yes, wk 3 [#38] | <one short question> |
 
-▶ = checked by running the code · ? = inferred, not seen directly. Link every cell that cites evidence.
+▶ = checked by running the code · ? = inferred, not seen directly · — = no task to judge.
 
 ## Findings
 
-Only what needs the mentor's attention, most important first. One line each: student, fact, link.
+The *why* behind a table cell, only where the cell alone would leave the mentor asking "what
+happened?". Never restate the verdict; a cell that says it all gets no line. Most important first.
 
-- **<name>:** <fact> ([#n], `sha`)
-- **<name>:** <fact>
+- **<name>:** <the specific gap, e.g. "PR #45 skips the daily-normals case in the criteria"> ([#45])
 - **Good:** <name> — <one notable thing done well>
 
 ## Direction
@@ -42,15 +42,19 @@ Not Docker: <only differences that could change a result, one line; omit if none
 
 ## Next week
 
-Pick one per student. Say which to expand into a full issue.
+Options for each student; pick one each. Say which to expand into a full issue.
 
 | # | Student | Task | Hrs | Done when | Why |
 |---|---|---|---|---|---|
 | A1 | <name> | <verb + object> | ~8 | <artifact + check>; PR merged | <goal or gap> |
 | A2 | <name> | <verb + object> | ~6 | <artifact + check> | <goal or gap> |
 
-<One line naming any parallel tracks and the shared metric.>
+<One line for dependencies, parallel tracks (and their shared metric), or fallbacks — omit if none.>
 
 ## Not seen
 
 <Comma-separated: Slack, Box, stale clone, meeting days, code not run, …>
+
+[#42]: <issue url>
+[PR #45]: <pr url>
+[report-a]: <url of the student's weekly-report comment>

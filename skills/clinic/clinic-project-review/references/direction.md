@@ -10,7 +10,13 @@ Start from the goals as the README states them. If the README has no goals secti
 and use the best available substitute (the client's problem statement, the mentor's own description
 in intake), clearly labeled as a substitute.
 
-Build the mapping, then read it both ways:
+One row per goal, in the README's own words. If the README states the goals as one sentence,
+split it only at the distinct outcomes it names ("summarize volume and response times … and show
+them on the dashboard" → volume · response times · dashboard), keeping its wording; do not invent
+sub-goals it does not name.
+
+Build the mapping, then read it both ways. In the report, collapse the task columns into one
+("#42, done #17"):
 
 | Goal | Active tasks | Completed this term | Status |
 |---|---|---|---|
