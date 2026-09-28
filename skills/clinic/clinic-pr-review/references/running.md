@@ -40,7 +40,7 @@ Don't copy a key into the scratch clone without asking the TA.
 
 ## 3. Docker
 
-The clinic requires that committed code runs in Docker. Students may develop locally or in a
+Unless otherwise stated, the clinic requires that committed code runs in Docker. Students may develop locally or in a
 devcontainer, but the Docker path must work.
 
 ```bash
