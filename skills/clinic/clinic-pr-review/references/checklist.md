@@ -144,13 +144,23 @@ Go through the issue's acceptance criteria one by one and mark each **met**, **p
 - If the issue has no checkable acceptance criteria, you can't judge this item: mark could not verify
   and tell the TA — that's a task-writing problem for the mentor, not a code problem for the student.
 
+### 13. The PR adds code that is coherent with the rest of the repo
+
+Go through the new code and compare it with the current state of the default branch.
+
+- **Fail:** code breaks existing patterns. A notebooks file in scripts/ directory when the rest are
+  in notebooks/. A script uses click when others use argparse. Anything that, even if it might make
+  sense on its own, does not properly fit with the established code base.
+- Also look at other unmerged branches. Is there an area where no standard exists on main, but two
+   new branches look to establish conflicting standards?
+
 ---
 
 ## Data science
 
 Only for PRs that report numbers, train models, or produce results. Otherwise n/a.
 
-### 13. Reported results are reproducible
+### 14. Reported results are reproducible
 
 - The data used is documented: which file or source, which version or download date, and any
   filtering applied.
@@ -164,7 +174,7 @@ Only for PRs that report numbers, train models, or produce results. Otherwise n/
 - **Fail:** a number you can't reproduce, a number with no documented path to it, or unseeded
   randomness behind a reported result.
 
-### 14. No leakage between train and test
+### 15. No leakage between train and test
 
 Look for information from the test set reaching training. The common forms in clinic work:
 

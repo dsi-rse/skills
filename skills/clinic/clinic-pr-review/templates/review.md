@@ -37,8 +37,9 @@ Ranked, most important first; five or fewer. Each is evidence for the TA to chec
 | 10 | AGENTS.md followed / changes flagged | pass | AGENTS.md unchanged |
 | 11 | PR links its issue | pass | closes #12 |
 | 12 | Solves the task | pass | 3/3 acceptance criteria met |
-| 13 | Results reproducible | could not verify | data on Box; TA copy not provided |
-| 14 | No train/test leakage | n/a | no modeling |
+| 13 | Coherence |  pass | 3/3 | |
+| 14 | Results reproducible | could not verify | data on Box; TA copy not provided |
+| 15 | No train/test leakage | n/a | no modeling |
 
 ## Flags
 
