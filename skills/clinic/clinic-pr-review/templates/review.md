@@ -6,9 +6,22 @@
 
 <One or two sentences: what the PR does and the main reason for the verdict.>
 
-## For the TA
+<If a follow-up review: "**From the last review:** 1 done · 2 done · 3 not addressed — <one line on what's left>". Mark "replied" where the student explained why not, and say whether the reason holds.>
 
-### Checklist
+## Key findings
+
+Ranked, most important first; five or fewer. Each is evidence for the TA to check, not text for the student.
+
+1. **<Short title>** (blocking) — <what is wrong and why it matters, in one sentence>. <What fixing it would look like.> Evidence: `<file>` or `<notebook>`, cell <n>; <what you ran or read>.
+2. **<Short title>** (blocking) — <...>
+
+**Optional suggestions** (at most three, one line each):
+
+- <...>
+
+**What's working:** <one or two specific things done well — worth the TA mentioning>
+
+## Checklist
 
 | # | Item | Verdict | Evidence |
 |---|---|---|---|
@@ -27,38 +40,16 @@
 | 13 | Results reproducible | could not verify | data on Box; TA copy not provided |
 | 14 | No train/test leakage | n/a | no modeling |
 
-### Flags
+## Flags
 
 <Only if any: deleted or weakened tests, new ignores, edits to AGENTS.md or CLAUDE.md, committed secrets or data, unrelated changes. One line each, with the file.>
 
-### What I ran
+## What I ran
 
 - `<command>` → <outcome>
 - `<command>` → <outcome>
 
-### Could not verify
+## Could not verify
 
 - <what, why, and what the TA would need to do to check it>
 
----
-
-## Comment for the student
-
-*(Paste-ready. Everything below the line.)*
-
----
-
-<One-sentence summary of the PR and where it stands.>
-
-**What's working:** <one or two specific things done well>
-
-**Requested changes**
-
-1. **<Short title>** — <what is wrong and why it matters, in one sentence>. <What to do, in one sentence.> (`<file>` or `<notebook>`, cell <n>)
-2. **<Short title>** — <...>
-
-**Suggestions (optional)**
-
-- <one line each, at most three>
-
-<If a follow-up review: open with "**From the last review:** 1 done · 2 done · 3 not yet — <one line on what's left>".>
