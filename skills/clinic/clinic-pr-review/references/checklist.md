@@ -194,3 +194,12 @@ often a sign of leakage the student hasn't spotted.
 - **Fail:** any leakage that affects a reported result. Explain it in one sentence of plain English
   ("the scaler learns the mean of the test rows, so the model has seen a bit of the test data") and
   give the fix.
+
+### 16. Data provenance
+
+Ensure the code does not break the provenance of the data. All raw data files should be preserved
+and important intermediates should be saved. 
+
+- **Fail:** any code that modifies the raw data files. A major data processing step that doesn't save
+intermediates. Any code or process introduced that jeopardizes the ability to trace the full history
+of the data and reproduce results.

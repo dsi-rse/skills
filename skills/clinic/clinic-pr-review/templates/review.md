@@ -40,6 +40,7 @@ Ranked, most important first; five or fewer. Each is evidence for the TA to chec
 | 13 | Coherence |  pass | 3/3 | |
 | 14 | Results reproducible | could not verify | data on Box; TA copy not provided |
 | 15 | No train/test leakage | n/a | no modeling |
+| 16 | Data provenance | fail | `utils/io.py:145` saves outputs to input path, overwriting raw data |
 
 ## Flags
 
