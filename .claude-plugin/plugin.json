@@ -8,10 +8,11 @@
   },
   "repository": "https://github.com/dsi-rse/skills",
   "license": "BSD-3-Clause",
-  "keywords": ["skills", "code-review", "pr-review", "engineering", "machine-learning", "model-selection", "hyperparameter-search", "clinic", "teaching"],
+  "keywords": ["skills", "code-review", "pr-review", "engineering", "machine-learning", "model-selection", "hyperparameter-search", "clinic", "teaching", "mentoring", "project-review"],
   "skills": [
     "./skills/engineering/pr-review",
     "./skills/engineering/model-hunt",
-    "./skills/clinic/clinic-pr-review"
+    "./skills/clinic/clinic-pr-review",
+    "./skills/clinic/clinic-project-review"
   ]
 }
