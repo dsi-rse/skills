@@ -151,8 +151,8 @@ Go through the new code and compare it with the current state of the default bra
 - **Fail:** code breaks existing patterns. A notebooks file in scripts/ directory when the rest are
   in notebooks/. A script uses click when others use argparse. Anything that, even if it might make
   sense on its own, does not properly fit with the established code base.
-- Also look at other unmerged branches. Is there an area where no standard exists on main, but two
-   new branches look to establish conflicting standards?
+- **Discuss:** Also look at other unmerged branches. Is there an area where no standard exists on main, but two
+   new branches look to establish conflicting standards? Mark these as 'Discuss'
 
 ---
 
