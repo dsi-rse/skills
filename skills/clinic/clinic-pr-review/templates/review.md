@@ -2,7 +2,8 @@
 
 **Repository:** <url> · **Author:** @<login> · **Task:** #<issue> · **Reviewed:** <date> at `<head sha>`
 
-## Verdict: <Ready to merge | Changes requested | Could not verify>
+## Verdict: <Ready to merge | Changes requested | Could not verify>*
+*Disclaimer: You should make the final judgment on approval making sure to balance perfection with progress.
 
 <One or two sentences: what the PR does and the main reason for the verdict.>
 
