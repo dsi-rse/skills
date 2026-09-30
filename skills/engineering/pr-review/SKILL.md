@@ -33,7 +33,7 @@ The five intake items:
 
 1. **PR description** — what the change is supposed to do, in the author's words.
 2. **Relevant issues / requirements** — linked tickets, specs, acceptance criteria. These let you review against *intent*, not just code quality. If none exist, note that; the review then can't verify requirements coverage and should say so.
-3. **Critical review factors** — what the user cares most about. If the user has no strong preference, default to: correctness, test coverage, security, repo coherence. Ask for a ranked or unranked list.
+3. **Critical review factors** — what the user cares most about. If the user has no strong preference, default to: correctness, test coverage, security, repo coherence, craft. Ask for a ranked or unranked list.
 4. **Base branch to diff against** — default to the repo's default branch if unconfirmed.
 5. **Live environment** — is there a running environment (staging URL, local dev server, test DB) the review can exercise? If yes, get access details and ask what's safe to do there. Treat any live environment as **read-only unless the user explicitly permits mutations** — a review should never modify shared state as a side effect.
 
@@ -103,7 +103,7 @@ Match structure to complexity, judged from the change map:
 |---|---|---|
 | Small | < ~150 reviewable lines, one area | Single reviewer pass covering all factors |
 | Medium | ~150–800 lines or 2–3 areas | One reviewer per critical factor, each reading the whole diff |
-| Large | > ~800 lines, many areas | Area × factor split, plus one **cross-cutting** reviewer for coherence between areas |
+| Large | > ~800 lines, many areas | Area × factor split, plus **cross-cutting** reviewers for coherence between areas and for craft (which judges the change as a whole) |
 
 Heuristics, not rules — a 100-line migration can outweigh a 900-line generated diff. Say which tier you picked and why. Cap fan-out at ~10 concurrent reviewers.
 
@@ -253,7 +253,8 @@ Per-factor checklists in `references/` — each reviewer reads only the file(s) 
 - `security.md` — injection, authz/IDOR, secrets, XSS/CSRF/SSRF, attack-path reporting
 - `performance.md` — N+1, complexity vs realistic n, memory, indexes
 - `tests.md` — assertion strength, mutation check, weakened tests
-- `repo-coherence.md` — reuse audit, pattern citations, placement, abstraction level
+- `repo-coherence.md` — reuse audit, pattern citations, placement
+- `craft.md` — right approach, root cause, abstraction level, legibility for the next reader (human or agent), highlights
 - `concurrency.md` — races, locks, async pitfalls, DB isolation
 - `migrations-and-compat.md` — expand/contract, rolling deploys, API compatibility
 
