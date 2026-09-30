@@ -1,13 +1,13 @@
 # Factor checklist: security
 
-Only report reachable issues — a pattern-match without a path from untrusted input is noise.
+Report an issue only if untrusted input can reach it. A risky-looking pattern with no path from outside input isn't a finding.
 
-- Injection: SQL/NoSQL built by string concat or format; shell/`exec`/`eval` with user data; template injection.
-- Input handling: validation at the trust boundary, not deep inside; deserialization of untrusted data (pickle, yaml.load, unbounded JSON).
-- AuthN/AuthZ: new endpoints — who can call them? Object-level checks (IDOR): does the handler verify the caller owns the resource, or only that they're logged in?
-- Secrets: hardcoded keys/passwords/tokens, secrets in logs or error messages, secrets in test fixtures that look real.
-- Web: XSS via unescaped output / innerHTML / dangerouslySetInnerHTML; CSRF on state-changing endpoints; open redirects; SSRF from user-supplied URLs.
-- Crypto & randomness: homegrown crypto, non-CSPRNG for tokens, weak hashing for passwords.
-- Dependencies: new packages — are they well-known? Pinned? Any typosquat-looking names?
-- Data exposure: PII in logs, overly broad API responses, stack traces to clients.
-- Report with the attack path: input source → sink. If you can't trace one, mark confidence accordingly.
+- Injection: SQL or NoSQL queries built by string concatenation or formatting; `exec`, `eval`, or shell commands that include user data; template injection.
+- Input handling: does the code validate input at the trust boundary, not deep inside? Does it deserialize untrusted data (pickle, `yaml.load`, unbounded JSON)?
+- Authentication and authorization: who can call each new endpoint? Does the handler check that the caller owns the requested resource, or only that they're logged in? Checking only the login is an insecure direct object reference (IDOR).
+- Secrets: hardcoded keys, passwords, or tokens; secrets in logs or error messages; real-looking secrets in test fixtures.
+- Web: cross-site scripting (XSS) through unescaped output, `innerHTML`, or `dangerouslySetInnerHTML`; cross-site request forgery (CSRF) on endpoints that change state; open redirects; server-side request forgery (SSRF) from user-supplied URLs.
+- Crypto and randomness: homegrown crypto, tokens from a random generator that isn't cryptographically secure, weak password hashing.
+- Dependencies: are new packages well known and pinned? Do any names look like typosquats of popular packages?
+- Data exposure: personal data in logs, API responses that return more than the caller needs, stack traces sent to clients.
+- Attack path: report the route from the input source to the vulnerable code (the sink). If you can't trace one, lower your stated confidence.

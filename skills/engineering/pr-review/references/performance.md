@@ -1,11 +1,11 @@
 # Factor checklist: performance
 
-Anchor findings to realistic inputs — "this is O(n²)" only matters if n gets big. Say what n is.
+Tie each finding to realistic input sizes. "This is O(n²)" matters only if n gets big, so say what n is.
 
-- N+1: queries or API calls inside loops; missing eager-loading/batching where an ORM is involved.
-- Complexity: nested loops over collections that scale with data; repeated linear scans that a dict/set fixes.
-- Memory: loading whole files/result sets when streaming is available; unbounded caches; accumulating lists in long-lived scopes.
-- I/O: sequential awaits that could be concurrent; missing pagination on list endpoints; chatty loops over the network.
-- Hot paths: is the changed code actually hot? Check callers before flagging micro-costs in cold paths.
-- Indexes: new query patterns — is there an index for the WHERE/ORDER BY? Migrations adding indexes on big tables: built concurrently?
-- Verify when possible: time it, EXPLAIN it, or profile it via the live environment rather than asserting from the code alone.
+- N+1 queries: a query or API call inside a loop; missing eager loading or batching when the code uses an ORM.
+- Complexity: nested loops over collections that grow with the data; repeated linear scans that a dict or set would replace.
+- Memory: loading whole files or result sets when streaming is available; caches with no size limit; lists that keep growing in long-lived objects.
+- I/O: sequential awaits that could run concurrently; list endpoints without pagination; loops that make one network call per item.
+- Hot paths: does the changed code run often enough to matter? Check the callers before flagging small costs in code that rarely runs.
+- Indexes: does each new WHERE or ORDER BY pattern have an index? Do migrations that add indexes to big tables build them concurrently?
+- Measure when you can: time it, run EXPLAIN on the query, or profile it in the live environment (within the approved actions). Report the measurement, or say that the finding comes from reading the code.
